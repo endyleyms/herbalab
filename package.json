@@ -7,7 +7,10 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "lint": "eslint ./src/**/*.{js,jsx} App.js --no-error-on-unmatched-pattern",
+    "build:tailwind": "tailwindcss --input input.css --output tailwind.css --no-autoprefixer && tailwind-rn",
+    "dev:tailwind": "concurrently \"tailwindcss --input input.css --output tailwind.css --no-autoprefixer --watch\" \"tailwind-rn --watch\""
   },
   "dependencies": {
     "expo": "~45.0.0",
@@ -15,12 +18,21 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-native": "0.68.1",
-    "react-native-web": "0.17.7"
+    "react-native-web": "0.17.7",
+    "tailwind-rn": "^4.2.0",
+    "webpack-dev-server": "~3.11.0",
+    "@expo/webpack-config": "~0.16.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@types/react": "~17.0.21",
     "@types/react-native": "~0.66.13",
+    "babel-eslint": "^10.1.0",
+    "concurrently": "^7.1.0",
+    "eslint": "^8.15.0",
+    "eslint-plugin-react": "^7.29.4",
+    "postcss": "^8.4.13",
+    "tailwindcss": "^3.0.24",
     "typescript": "~4.3.5"
   },
   "private": true
