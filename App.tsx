@@ -1,12 +1,12 @@
 import {TailwindProvider} from 'tailwind-rn';
 import utilities from './tailwind.json';
-import Hello from './Components/MyComponent';
+import Login from './Pages/Login';
 
 
 export default function App() {
   return (
     <TailwindProvider utilities={utilities}>
-     <Hello/>
+     <Login/>
     </TailwindProvider>
   );
 }
