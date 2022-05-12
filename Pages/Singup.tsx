@@ -4,15 +4,35 @@ import Hello from '../Components/MyComponent';
 import {useTailwind} from 'tailwind-rn';
 
 
-export default function Login({navigation}) {
+export default function Singup() {
   const tailwind = useTailwind();
   const [email, onChangeEmail] = React.useState("");
   const [password, onChangePassword] = React.useState("");
+  const [name, onChangeName] = React.useState("");
+  const [lastName, onChangeLastName] = React.useState("");
   
   return (
     <SafeAreaView>
       <Hello />
       <form >
+      <View>
+          <Text>First Name</Text>
+          <TextInput
+          style={tailwind('w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4')}
+          onChangeText={onChangeName}
+          value={name}
+          placeholder="Your First Name"
+        />
+        </View>
+        <View>
+          <Text>Last Name</Text>
+          <TextInput
+          style={tailwind('w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4')}
+          onChangeText={onChangeLastName}
+          value={lastName}
+          placeholder="Last Name"
+        />
+        </View>
         <View>
           <Text>Email</Text>
           <TextInput
@@ -33,17 +53,10 @@ export default function Login({navigation}) {
           /> 
         </View>
         <Button 
-        title="Login"
+        title="Singup"
         // onPress={}
         />  
       </form>
-      <Text>Forgot the password?</Text>
-      <View>
-        <Text onPress={() => navigation.navigate('Singup')}>Dont have an account? Sing up</Text>
-      </View>
-          
-      
     </SafeAreaView>
   );
 };
-
