@@ -1,15 +1,18 @@
 import React from "react";
-import { Pressable, SafeAreaView, TextInput, StyleSheet, View, Button, Text } from "react-native";
+import { Pressable, SafeAreaView, TextInput, StyleSheet, View, Text } from "react-native";
 import Hello from '../Components/MyComponent';
-import {useTailwind} from 'tailwind-rn';
 
 
 export default function Singup() {
-  const tailwind = useTailwind();
-  const [email, onChangeEmail] = React.useState("");
-  const [password, onChangePassword] = React.useState("");
-  const [name, onChangeName] = React.useState("");
-  const [lastName, onChangeLastName] = React.useState("");
+  const [state, setState] = React.useState({
+    fisrtName: "",
+    lastName: "",
+    email: "",
+    password: ""
+  });
+  const handleChangeText = (fisrtName: any, value: any) => {
+    setState({...state, [fisrtName]: value})
+  }
   
   return (
     <><View style={styles.containerHello}>
@@ -22,8 +25,7 @@ export default function Singup() {
             <View style={styles.container}>
               <TextInput
                 style={styles.input}
-                onChangeText={onChangeName}
-                value={name}
+                onChangeText={(value) =>handleChangeText("fisrtName", value)}
                 placeholder="Your First Name" />
             </View>
           </View>
@@ -32,8 +34,7 @@ export default function Singup() {
             <View style={styles.container}>
               <TextInput
                 style={styles.input}
-                onChangeText={onChangeLastName}
-                value={lastName}
+                onChangeText={(value) =>handleChangeText("lastName", value)}
                 placeholder="Your Last Name" />
             </View>
           </View>
@@ -42,8 +43,7 @@ export default function Singup() {
             <View style={styles.container}>
               <TextInput
                 style={styles.input}
-                onChangeText={onChangeEmail}
-                value={email}
+                onChangeText={(value) =>handleChangeText("email", value)}
                 placeholder="Your email" />
             </View>
           </View>
@@ -52,15 +52,14 @@ export default function Singup() {
             <View style={styles.container}>
               <TextInput
                 style={styles.input}
-                onChangeText={onChangePassword}
-                value={password}
+                onChangeText={(value) =>handleChangeText("password", value)}
                 secureTextEntry={true}
                 placeholder="Your password" />
             </View>
 
           </View>
           <Pressable style={styles.buton}>
-            <Text style={styles.text}>Singup</Text>
+            <Text style={styles.text} onPress={() =>console.log(state)} >Singup</Text>
           </Pressable>
         </form>
       </SafeAreaView></>

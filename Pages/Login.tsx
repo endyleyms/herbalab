@@ -4,8 +4,14 @@ import Hello from '../Components/MyComponent';
 
 
 export default function Login({navigation}) {
-  const [email, onChangeEmail] = React.useState("");
-  const [password, onChangePassword] = React.useState("");
+  const [state, setState] = React.useState({
+    email: "",
+    password: ""
+  });
+  const handleChangeText = (email: any, value: any) => {
+    setState({...state, [email]: value})
+  }
+  
   
   return (
     <><View style={styles.containerHello}>
@@ -18,8 +24,7 @@ export default function Login({navigation}) {
             <View style={styles.container}>
               <TextInput
                 style={styles.input}
-                onChangeText={onChangeEmail}
-                value={email}
+                onChangeText={(value) =>handleChangeText("email", value)}
                 placeholder="Your email" />
             </View>
           </View>
@@ -28,14 +33,13 @@ export default function Login({navigation}) {
             <View style={styles.container}>
               <TextInput
                 style={styles.input}
-                onChangeText={onChangePassword}
-                value={password}
+                onChangeText={(value) =>handleChangeText("password", value)}
                 secureTextEntry={true}
                 placeholder="Your password" />
             </View>
           </View>
           <Pressable style={styles.buton}>
-            <Text style={styles.text}>Login</Text>
+            <Text style={styles.text} onPress={() =>console.log(state)} >Login</Text>
           </Pressable>
         </form>
         <Pressable style={styles.butonF}>
