@@ -1,49 +1,120 @@
 import React from "react";
-import { SafeAreaView, TextInput, StyleSheet, View, Button, Text } from "react-native";
+import { SafeAreaView, TextInput, StyleSheet, View, Button, Text, Pressable } from "react-native";
 import Hello from '../Components/MyComponent';
-import {useTailwind} from 'tailwind-rn';
 
 
 export default function Login({navigation}) {
-  const tailwind = useTailwind();
   const [email, onChangeEmail] = React.useState("");
   const [password, onChangePassword] = React.useState("");
   
   return (
-    <SafeAreaView>
+    <><View style={styles.containerHello}>
       <Hello />
-      <form >
+    </View>
+    <SafeAreaView style={styles.container1}>
+        <form>
+          <View>
+            <Text><strong>Email</strong></Text>
+            <View style={styles.container}>
+              <TextInput
+                style={styles.input}
+                onChangeText={onChangeEmail}
+                value={email}
+                placeholder="Your email" />
+            </View>
+          </View>
+          <View>
+            <Text><strong>Password</strong></Text>
+            <View style={styles.container}>
+              <TextInput
+                style={styles.input}
+                onChangeText={onChangePassword}
+                value={password}
+                secureTextEntry={true}
+                placeholder="Your password" />
+            </View>
+          </View>
+          <Pressable style={styles.buton}>
+            <Text style={styles.text}>Login</Text>
+          </Pressable>
+        </form>
+        <Pressable style={styles.butonF}>
+            <Text style={styles.textf}>Sing In with Facebook</Text>
+        </Pressable>
+        <Pressable style={styles.butonG}>
+            <Text style={styles.textG}>Sing In with Google</Text>
+        </Pressable>
         <View>
-          <Text>Email</Text>
-          <TextInput
-          style={tailwind('w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4')}
-          onChangeText={onChangeEmail}
-          value={email}
-          placeholder="Your email"
-        />
+          <Text onPress={() => navigation.navigate('Singup')}>Dont have an account?<strong>  Sing up</strong> </Text>
         </View>
-        <View>
-        <Text>Password</Text>
-         <TextInput
-         style={tailwind('w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4')}
-          onChangeText={onChangePassword}
-          value={password}
-          secureTextEntry={true}
-          placeholder="Your password"
-          /> 
-        </View>
-        <Button 
-        title="Login"
-        // onPress={}
-        />  
-      </form>
-      <Text>Forgot the password?</Text>
-      <View>
-        <Text onPress={() => navigation.navigate('Singup')}>Dont have an account? Sing up</Text>
-      </View>
-          
-      
     </SafeAreaView>
+    </>
   );
 };
-
+const styles= StyleSheet.create({
+  container1:{
+    position: 'relative',
+    top: 200,
+    alignItems: 'stretch',
+    width: '80%',
+    left: 35
+  },
+  containerHello:{
+    position: 'relative',
+    top: 80,
+    alignItems: 'center',
+    width: '80%',
+    left: 35
+  },
+  container:{
+    backgroundColor: 'white',
+    width: '100%',
+    borderColor: '#e8e8e8',
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    marginVertical: 5,
+  },
+  input:{
+    height: 50
+  },
+  buton:{
+    backgroundColor: '#F2DCAE',
+    width: '100%',
+    height: '20%',
+    padding: 15,
+    marginVertical: 5,
+    alignItems: 'center',
+    borderRadius: 5,
+  },
+  butonF:{
+    backgroundColor: '#E7EAF4',
+    width: '100%',
+    height: '15%',
+    padding: 15,
+    marginVertical: 5,
+    alignItems: 'center',
+    borderRadius: 5,
+  },
+  butonG:{
+    backgroundColor: '#FAE9EA',
+    width: '100%',
+    height: '15%',
+    padding: 15,
+    marginVertical: 5,
+    alignItems: 'center',
+    borderRadius: 5,
+  },
+  text:{
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  textf:{
+    fontWeight: 'bold',
+    color: '#4765A9',
+  },
+  textG:{
+    fontWeight: 'bold',
+    color: '#f97316',
+  },
+})
