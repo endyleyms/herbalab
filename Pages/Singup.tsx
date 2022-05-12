@@ -1,11 +1,15 @@
 import React from "react";
-import { SafeAreaView, TextInput, StyleSheet, View, Button, Text, Pressable } from "react-native";
+import { Pressable, SafeAreaView, TextInput, StyleSheet, View, Button, Text } from "react-native";
 import Hello from '../Components/MyComponent';
+import {useTailwind} from 'tailwind-rn';
 
 
-export default function Login({navigation}) {
+export default function Singup() {
+  const tailwind = useTailwind();
   const [email, onChangeEmail] = React.useState("");
   const [password, onChangePassword] = React.useState("");
+  const [name, onChangeName] = React.useState("");
+  const [lastName, onChangeLastName] = React.useState("");
   
   return (
     <><View style={styles.containerHello}>
@@ -13,6 +17,26 @@ export default function Login({navigation}) {
     </View>
     <SafeAreaView style={styles.container1}>
         <form>
+          <View>
+            <Text><strong>First Name</strong></Text>
+            <View style={styles.container}>
+              <TextInput
+                style={styles.input}
+                onChangeText={onChangeName}
+                value={name}
+                placeholder="Your First Name" />
+            </View>
+          </View>
+          <View>
+            <Text><strong>Last Name</strong></Text>
+            <View style={styles.container}>
+              <TextInput
+                style={styles.input}
+                onChangeText={onChangeLastName}
+                value={lastName}
+                placeholder="Your Last Name" />
+            </View>
+          </View>
           <View>
             <Text><strong>Email</strong></Text>
             <View style={styles.container}>
@@ -33,28 +57,20 @@ export default function Login({navigation}) {
                 secureTextEntry={true}
                 placeholder="Your password" />
             </View>
+
           </View>
           <Pressable style={styles.buton}>
-            <Text style={styles.text}>Login</Text>
+            <Text style={styles.text}>Singup</Text>
           </Pressable>
         </form>
-        <Pressable style={styles.butonF}>
-            <Text style={styles.textf}>Sing In with Facebook</Text>
-        </Pressable>
-        <Pressable style={styles.butonG}>
-            <Text style={styles.textG}>Sing In with Google</Text>
-        </Pressable>
-        <View>
-          <Text onPress={() => navigation.navigate('Singup')}>Dont have an account?<strong>  Sing up</strong> </Text>
-        </View>
-    </SafeAreaView>
-    </>
+      </SafeAreaView></>
   );
 };
+
 const styles= StyleSheet.create({
   container1:{
     position: 'relative',
-    top: 200,
+    top: 150,
     alignItems: 'stretch',
     width: '80%',
     left: 35
@@ -81,24 +97,6 @@ const styles= StyleSheet.create({
   buton:{
     backgroundColor: '#F2DCAE',
     width: '100%',
-    height: '20%',
-    padding: 15,
-    marginVertical: 5,
-    alignItems: 'center',
-    borderRadius: 5,
-  },
-  butonF:{
-    backgroundColor: '#E7EAF4',
-    width: '100%',
-    height: '15%',
-    padding: 15,
-    marginVertical: 5,
-    alignItems: 'center',
-    borderRadius: 5,
-  },
-  butonG:{
-    backgroundColor: '#FAE9EA',
-    width: '100%',
     height: '15%',
     padding: 15,
     marginVertical: 5,
@@ -108,13 +106,5 @@ const styles= StyleSheet.create({
   text:{
     fontWeight: 'bold',
     color: 'white',
-  },
-  textf:{
-    fontWeight: 'bold',
-    color: '#4765A9',
-  },
-  textG:{
-    fontWeight: 'bold',
-    color: '#f97316',
   },
 })
