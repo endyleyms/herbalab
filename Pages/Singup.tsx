@@ -23,7 +23,7 @@ export default function Singup() {
         const errorCode = error.code;
         const errorMessage = error.message;
       })
-      }
+  }
     
   
   return (

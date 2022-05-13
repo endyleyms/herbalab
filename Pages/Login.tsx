@@ -1,43 +1,30 @@
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, } from "firebase/auth"
+import firebaseModule from '../database/firebase'
 import React from "react";
 import { SafeAreaView, TextInput, StyleSheet, View, Text, Pressable } from "react-native";
 import Hello from '../Components/MyComponent';
 
 
 export default function Login({navigation}) {
-  const [state, setState] = React.useState({
-    email: "",
-    password: ""
-  });
-  const handleChangeText = (email: any, value: any) => {
-    setState({...state, [email]: value})
+  const [email, setEmail] = React.useState('');
+  const [password, setPasswor] = React.useState('');
+
+  const handleSigIn  =  () =>{
+    const auth = getAuth(firebaseModule.app);
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user.email)
+        navigation.navigate('Explore')
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      })
   }
 
-  const provider = new GoogleAuthProvider();
-  
-  const authGoogle = () =>{
-    const auth = getAuth();
-    
-    signInWithPopup(auth, provider)
-    .then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-      // ...
-    }).catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
-    });
-  }
-  
   
   return (
     <><View style={styles.containerHello}>
@@ -50,7 +37,8 @@ export default function Login({navigation}) {
             <View style={styles.container}>
               <TextInput
                 style={styles.input}
-                onChangeText={(value) =>handleChangeText("email", value)}
+                value={email}
+                onChangeText={(text) =>setEmail(text)}
                 placeholder="Your email" />
             </View>
           </View>
@@ -59,20 +47,21 @@ export default function Login({navigation}) {
             <View style={styles.container}>
               <TextInput
                 style={styles.input}
-                onChangeText={(value) =>handleChangeText("password", value)}
+                value={password}
+                onChangeText={(text) =>setPasswor(text)}
                 secureTextEntry={true}
                 placeholder="Your password" />
             </View>
           </View>
           <Pressable style={styles.buton}>
-            <Text style={styles.text} onPress={() => navigation.navigate('Explore')} >Login</Text>
+            <Text style={styles.text} onPress={handleSigIn} >Login</Text>
           </Pressable>
         </form>
         <Pressable style={styles.butonF}>
             <Text style={styles.textf}>Sing In with Facebook</Text>
         </Pressable>
         <Pressable style={styles.butonG}>
-            <Text style={styles.textG} onPress={authGoogle}>Sing In with Google</Text>
+            <Text style={styles.textG}>Sing In with Google</Text>
         </Pressable>
         <View>
           <Text onPress={() => navigation.navigate('Singup')}>Dont have an account?<strong>  Sing up</strong> </Text>
