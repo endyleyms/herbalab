@@ -5,8 +5,6 @@ import firebaseModule from '../database/firebase'
 import Hello from '../Components/MyComponent';
 
 export default function Singup({navigation}) {
-  const [fisrtName, setFisrtName] = React.useState('');
-  const [lastName, setLastName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPasswor] = React.useState('');
 
