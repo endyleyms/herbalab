@@ -4,7 +4,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
 import firebaseModule from '../database/firebase'
 import Hello from '../Components/MyComponent';
 
-export default function Singup() {
+export default function Singup({navigation}) {
   const [fisrtName, setFisrtName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
   const [email, setEmail] = React.useState('');
@@ -17,6 +17,7 @@ export default function Singup() {
         // Signed in
         const user = userCredential.user;
         console.log(user.email)
+        navigation.navigate('Explore')
         // ...
       })
       .catch((error) => {
@@ -31,29 +32,8 @@ export default function Singup() {
       <Hello />
     </View>
     <SafeAreaView style={styles.container1}>
-        <form>
           <View>
-            <Text><strong>First Name</strong></Text>
-            <View style={styles.container}>
-              <TextInput
-                style={styles.input}
-                value={fisrtName}
-                onChangeText={(text) =>setFisrtName(text)}
-                placeholder="Your First Name" />
-            </View>
-          </View>
-          <View>
-            <Text><strong>Last Name</strong></Text>
-            <View style={styles.container}>
-              <TextInput
-                style={styles.input}
-                value= {lastName}
-                onChangeText={(text) =>setLastName(text)}
-                placeholder="Your Last Name" />
-            </View>
-          </View>
-          <View>
-            <Text><strong>Email</strong></Text>
+            <Text>Email</Text>
             <View style={styles.container}>
               <TextInput
                 style={styles.input}
@@ -63,7 +43,7 @@ export default function Singup() {
             </View>
           </View>
           <View>
-            <Text><strong>Password</strong></Text>
+            <Text>Password</Text>
             <View style={styles.container}>
               <TextInput
                 style={styles.input}
@@ -77,7 +57,6 @@ export default function Singup() {
           <Pressable style={styles.buton}>
             <Text style={styles.text} onPress={ handleCreateUser} >Singup</Text>
           </Pressable>
-        </form>
       </SafeAreaView></>
   );
 };

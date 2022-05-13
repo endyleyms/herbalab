@@ -31,9 +31,8 @@ export default function Login({navigation}) {
       <Hello />
     </View>
     <SafeAreaView style={styles.container1}>
-        <form>
           <View>
-            <Text><strong>Email</strong></Text>
+            <Text>Email</Text>
             <View style={styles.container}>
               <TextInput
                 style={styles.input}
@@ -43,7 +42,7 @@ export default function Login({navigation}) {
             </View>
           </View>
           <View>
-            <Text><strong>Password</strong></Text>
+            <Text>Password</Text>
             <View style={styles.container}>
               <TextInput
                 style={styles.input}
@@ -56,7 +55,6 @@ export default function Login({navigation}) {
           <Pressable style={styles.buton}>
             <Text style={styles.text} onPress={handleSigIn} >Login</Text>
           </Pressable>
-        </form>
         <Pressable style={styles.butonF}>
             <Text style={styles.textf}>Sing In with Facebook</Text>
         </Pressable>
@@ -64,7 +62,7 @@ export default function Login({navigation}) {
             <Text style={styles.textG}>Sing In with Google</Text>
         </Pressable>
         <View>
-          <Text onPress={() => navigation.navigate('Singup')}>Dont have an account?<strong>  Sing up</strong> </Text>
+          <Text onPress={() => navigation.navigate('Singup')}>Dont have an account? Sing up </Text>
         </View>
     </SafeAreaView>
     </>
