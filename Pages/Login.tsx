@@ -1,5 +1,6 @@
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import React from "react";
-import { SafeAreaView, TextInput, StyleSheet, View, Button, Text, Pressable } from "react-native";
+import { SafeAreaView, TextInput, StyleSheet, View, Text, Pressable } from "react-native";
 import Hello from '../Components/MyComponent';
 
 
@@ -10,6 +11,31 @@ export default function Login({navigation}) {
   });
   const handleChangeText = (email: any, value: any) => {
     setState({...state, [email]: value})
+  }
+
+  const provider = new GoogleAuthProvider();
+  
+  const authGoogle = () =>{
+    const auth = getAuth();
+    
+    signInWithPopup(auth, provider)
+    .then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      // ...
+    }).catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+    });
   }
   
   
@@ -39,14 +65,14 @@ export default function Login({navigation}) {
             </View>
           </View>
           <Pressable style={styles.buton}>
-            <Text style={styles.text} onPress={() =>console.log(state)} >Login</Text>
+            <Text style={styles.text} onPress={() => navigation.navigate('Explore')} >Login</Text>
           </Pressable>
         </form>
         <Pressable style={styles.butonF}>
             <Text style={styles.textf}>Sing In with Facebook</Text>
         </Pressable>
         <Pressable style={styles.butonG}>
-            <Text style={styles.textG}>Sing In with Google</Text>
+            <Text style={styles.textG} onPress={authGoogle}>Sing In with Google</Text>
         </Pressable>
         <View>
           <Text onPress={() => navigation.navigate('Singup')}>Dont have an account?<strong>  Sing up</strong> </Text>

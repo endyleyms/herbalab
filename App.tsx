@@ -52,6 +52,7 @@ export default function App() {
               fontWeight: 'bold',
             },
           }} />
+          
           <Stack.Screen 
           name="Herbarium" 
           component={Herbarium}
