@@ -1,43 +1,60 @@
+import { getAuth, signInWithEmailAndPassword, } from "firebase/auth"
+import firebaseModule from '../database/firebase'
 import React from "react";
-import { SafeAreaView, TextInput, StyleSheet, View, Button, Text, Pressable } from "react-native";
+import { SafeAreaView, TextInput, StyleSheet, View, Text, Pressable } from "react-native";
 import Hello from '../Components/MyComponent';
 
 
 export default function Login({navigation}) {
-  const [email, onChangeEmail] = React.useState("");
-  const [password, onChangePassword] = React.useState("");
+  const [email, setEmail] = React.useState('');
+  const [password, setPasswor] = React.useState('');
+
+  const handleSigIn  =  () =>{
+    const auth = getAuth(firebaseModule.app);
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user.email)
+        navigation.navigate('Explore')
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      })
+  }
+
   
   return (
     <><View style={styles.containerHello}>
       <Hello />
     </View>
     <SafeAreaView style={styles.container1}>
-        <form>
           <View>
-            <Text><strong>Email</strong></Text>
+            <Text>Email</Text>
             <View style={styles.container}>
               <TextInput
                 style={styles.input}
-                onChangeText={onChangeEmail}
                 value={email}
+                onChangeText={(text) =>setEmail(text)}
                 placeholder="Your email" />
             </View>
           </View>
           <View>
-            <Text><strong>Password</strong></Text>
+            <Text>Password</Text>
             <View style={styles.container}>
               <TextInput
                 style={styles.input}
-                onChangeText={onChangePassword}
                 value={password}
+                onChangeText={(text) =>setPasswor(text)}
                 secureTextEntry={true}
                 placeholder="Your password" />
             </View>
           </View>
           <Pressable style={styles.buton}>
-            <Text style={styles.text}>Login</Text>
+            <Text style={styles.text} onPress={handleSigIn} >Login</Text>
           </Pressable>
-        </form>
         <Pressable style={styles.butonF}>
             <Text style={styles.textf}>Sing In with Facebook</Text>
         </Pressable>
@@ -45,7 +62,7 @@ export default function Login({navigation}) {
             <Text style={styles.textG}>Sing In with Google</Text>
         </Pressable>
         <View>
-          <Text onPress={() => navigation.navigate('Singup')}>Dont have an account?<strong>  Sing up</strong> </Text>
+          <Text onPress={() => navigation.navigate('Singup')}>Dont have an account? Sing up </Text>
         </View>
     </SafeAreaView>
     </>
