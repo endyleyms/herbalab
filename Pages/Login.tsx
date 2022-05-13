@@ -61,9 +61,7 @@ export default function Login({navigation}) {
         <Pressable style={styles.butonG}>
             <Text style={styles.textG}>Sing In with Google</Text>
         </Pressable>
-        <View>
-          <Text onPress={() => navigation.navigate('Singup')}>Dont have an account? Sing up </Text>
-        </View>
+        <Text onPress={() => navigation.navigate('Singup')}>Dont have an account? Sing up </Text>
     </SafeAreaView>
     </>
   );
@@ -98,8 +96,8 @@ const styles= StyleSheet.create({
   buton:{
     backgroundColor: '#F2DCAE',
     width: '100%',
-    height: '20%',
-    padding: 15,
+    height: '10%',
+    padding: 10,
     marginVertical: 5,
     alignItems: 'center',
     borderRadius: 5,
@@ -107,8 +105,8 @@ const styles= StyleSheet.create({
   butonF:{
     backgroundColor: '#E7EAF4',
     width: '100%',
-    height: '15%',
-    padding: 15,
+    height: '10%',
+    padding: 10,
     marginVertical: 5,
     alignItems: 'center',
     borderRadius: 5,
@@ -116,8 +114,8 @@ const styles= StyleSheet.create({
   butonG:{
     backgroundColor: '#FAE9EA',
     width: '100%',
-    height: '15%',
-    padding: 15,
+    height: '10%',
+    padding: 10,
     marginVertical: 5,
     alignItems: 'center',
     borderRadius: 5,
