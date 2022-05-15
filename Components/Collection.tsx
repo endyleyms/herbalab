@@ -1,28 +1,31 @@
 import { View, Text, Image, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
-import React from 'react'
 
-const Collection = () => {
+const Collection = ({familia, image}) => {
   const navigation = useNavigation();
+   
   return (
     <View style={styles.cardPlants}>
-      <Text style={styles.familia} onPress={() => navigation.navigate('Card')}>Familia</Text>
+      <Text style={styles.familia} onPress={() => navigation.navigate('Card')}>{familia}</Text>
       <Image 
-      style={{ width: '80%', height: '70%', alignSelf: 'center' }}
-      source={{uri: "https://cifras.biodiversidad.co/img/angiospermas.png"}} />
+      style={{ width: '80%', height: '50%', alignSelf: 'center', padding: 30 }}
+      source={{uri: image}} />
       <Text style={styles.text}>Número</Text>
     </View>
   )
 }
 const styles= StyleSheet.create({
   cardPlants:{
+    display: 'flex',
+    justifyContent: 'space-around',
     alignContent: 'center',
     backgroundColor: 'white',
     width: '80%',
-    height: '50%',
-    padding: 10,
+    height: '15%',
+    padding: 5,
     marginVertical: 5,
     borderRadius: 5,
+    paddingBottom: 5
   },
   familia:{
     backgroundColor: '#BCD4BF',

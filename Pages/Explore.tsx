@@ -1,13 +1,32 @@
-import { View, StyleSheet } from 'react-native'
-import React from 'react'
-import Search from '../Components/Search'
+import { View, StyleSheet, FlatList, ScrollView } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { collection, getDocs } from 'firebase/firestore';
+import firebaseModule from '../database/firebase'
 import Collection from '../Components/Collection'
 
 const Explore = () => {
+  const [families, setFamilies] = useState([{}])
+  async function getFamilia() {
+    const familiaCol = collection(firebaseModule.db, "familia");
+    const familiaSnapshot = await getDocs(familiaCol);
+    console.log(familiaSnapshot)
+    const familiaList= familiaSnapshot.docs.map(doc => doc.data());
+    setFamilies(familiaList);
+    console.log(familiaList)
+    return familiaList
+  }
+  console.log(getFamilia)
+
+  useEffect(()=> {
+    getFamilia()
+  }, [])
+
   return (
     <View style={styles.container}>
-      <Search/>
-      <Collection/>
+      <ScrollView horizontal={false} style={{width: '100%', height: '100%'}}>
+        {families.map((item)=> <Collection image={item.image} familia={item.familia}/>)}
+      </ScrollView>
+            
     </View>
   )
 }
@@ -19,6 +38,7 @@ const styles= StyleSheet.create({
     position: 'relative',
     left: 30,
     top: 40,
+    height: '100%'
   }
 })
 
