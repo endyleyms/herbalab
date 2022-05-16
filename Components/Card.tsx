@@ -3,15 +3,12 @@ import React from 'react'
 import Search from './Search'
 
 const Card = () => {
+
   return (
     <View style={styles.container}>
       <Search />
       <View style={styles.cardPlants}>
-        <Text style={styles.familia}>Familia</Text>
-        <Image 
-        source={{uri: '	https://2.bp.blogspot.com/-HIQMomF_0JA/WCnYWVTxtGI…uMDJIQO4odx3ChUuwCLcB/s640/orchiplop_003_mini.jpg'}}
-        />
-        
+        <Text style={styles.familia}>Familia</Text>        
         <View>
           <Text>clase: </Text>
           <Text>Orden:</Text>
