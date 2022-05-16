@@ -16,7 +16,7 @@ export default function Login({navigation}) {
         // Signed in
         const user = userCredential.user;
         console.log(user.email)
-        navigation.navigate('Explore')
+        navigation.navigate('Home')
         // ...
       })
       .catch((error) => {
@@ -56,7 +56,7 @@ export default function Login({navigation}) {
             <Text style={styles.text} onPress={handleSigIn} >Login</Text>
           </Pressable>
         <Pressable style={styles.butonF}>
-            <Text style={styles.textf} onPress={() => navigation.navigate('Explore')}>Sing In with Facebook</Text>
+            <Text style={styles.textf} onPress={() => navigation.navigate('Home')}>Sing In with Facebook</Text>
         </Pressable>
         <Pressable style={styles.butonG}>
             <Text style={styles.textG}>Sing In with Google</Text>

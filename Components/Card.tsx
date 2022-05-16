@@ -1,4 +1,4 @@
-import { View, Text, Image,StyleSheet } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 import Search from './Search'
 
@@ -10,9 +10,6 @@ const Card = () => {
       <View style={styles.cardPlants}>
         <Text style={styles.familia}>Familia</Text>        
         <View>
-          <Text>clase: </Text>
-          <Text>Orden:</Text>
-          <Text>Familia:</Text>
           <Text>Género:</Text>
           <Text>Especie:</Text>
         </View>
@@ -30,6 +27,7 @@ const styles= StyleSheet.create({
     position: 'relative',
     left: 30,
     top: 40,
+    height: '50%'
   },
   cardPlants:{
     alignContent: 'center',

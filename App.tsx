@@ -1,12 +1,62 @@
 import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {SafeAreaView, StyleSheet} from "react-native";
 import Login from './Pages/Login';
 import Singup from './Pages/Singup';
 import Explore from './Pages/Explore';
-import Herbarium from './Pages/Herbarium';
-import NewRegister from './Pages/NewRegister';
+import Herbario from './Pages/Herbario';
+import Profile from './Pages/Profile';
 import Card from './Components/Card';
+
+const Tab = createBottomTabNavigator();
+
+function Home() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen 
+      name="Explore" 
+      component={Explore}
+      options={{
+        title: 'Explore',
+        headerStyle: {
+          backgroundColor: '#BCD4BF',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }} />
+      <Tab.Screen 
+      name="Herbario" 
+      component={Herbario}
+      options={{
+        title: 'Herbario',
+        headerStyle: {
+          backgroundColor: '#BCD4BF',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }} />
+      <Tab.Screen
+      name="Profile" 
+      component={Profile}
+      options={{
+        title: 'Profile',
+        headerStyle: {
+          backgroundColor: '#BCD4BF',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}/>
+    </Tab.Navigator>
+  );
+}
+
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -39,47 +89,12 @@ export default function App() {
             headerTitleStyle: {
               fontWeight: 'bold',
             },
-          }} />
+          }} /> 
           <Stack.Screen 
-          name="Explore" 
-          component={Explore}
-          options={{
-            title: 'Explore',
-            headerStyle: {
-              backgroundColor: '#BCD4BF',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          }} />
-          
-          <Stack.Screen 
-          name="Herbarium" 
-          component={Herbarium}
-          options={{
-            title: 'Herbarium',
-            headerStyle: {
-              backgroundColor: '#BCD4BF',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          }} />
-          <Stack.Screen 
-          name="NewRegister" 
-          component={NewRegister}
-          options={{
-            title: 'NewRegister',
-            headerStyle: {
-              backgroundColor: '#BCD4BF',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          }} />  
+          name="Home" 
+          component={Home}
+          options={{ headerShown: false }}
+          />  
           <Stack.Screen 
           name="Card" 
           component={Card}

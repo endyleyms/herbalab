@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const NewRegister = () => {
+const Herbario = () => {
   return (
     <View>
-      <Text>NewRegister</Text>
+      <Text>Crear nuevo registro</Text>
     </View>
   )
 }
 
-export default NewRegister
+export default Herbario
