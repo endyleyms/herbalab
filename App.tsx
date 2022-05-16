@@ -6,6 +6,7 @@ import Singup from './Pages/Singup';
 import Explore from './Pages/Explore';
 import Herbarium from './Pages/Herbarium';
 import NewRegister from './Pages/NewRegister';
+import Card from './Components/Card';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -78,7 +79,20 @@ export default function App() {
             headerTitleStyle: {
               fontWeight: 'bold',
             },
-          }} />          
+          }} />  
+          <Stack.Screen 
+          name="Card" 
+          component={Card}
+          options={{
+            title: 'Card',
+            headerStyle: {
+              backgroundColor: '#BCD4BF',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }} />        
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

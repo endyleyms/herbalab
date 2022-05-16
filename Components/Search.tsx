@@ -1,10 +1,10 @@
-import { View, TextInput, StyleSheet, Pressable, Text } from 'react-native'
+import { View, TextInput, StyleSheet } from 'react-native'
 import React from 'react'
 
 export default function Search () {
   const [searchQuery, setSearchQuery] = React.useState('');
   return (
-    <View style={styles.container1}>
+    <View >
       <View style={styles.container}>
         <TextInput 
         style={styles.input}
@@ -18,16 +18,10 @@ export default function Search () {
 }
 
 const styles= StyleSheet.create({
-  container1:{
-    flex: 1,
-    flexDirection: 'row',
-  },
   container:{
-    position: 'relative',
-    left: 20,
-    top: 40,
     backgroundColor: 'white',
     width: '80%',
+    height: 50,
     borderColor: '#e8e8e8',
     borderWidth: 1,
     borderRadius: 5,

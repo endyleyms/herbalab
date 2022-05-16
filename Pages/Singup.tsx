@@ -62,7 +62,7 @@ export default function Singup({navigation}) {
 const styles= StyleSheet.create({
   container1:{
     position: 'relative',
-    top: 150,
+    top: 200,
     alignItems: 'stretch',
     width: '80%',
     left: 35
@@ -90,7 +90,7 @@ const styles= StyleSheet.create({
     backgroundColor: '#F2DCAE',
     width: '100%',
     height: '15%',
-    padding: 15,
+    padding: 10,
     marginVertical: 5,
     alignItems: 'center',
     borderRadius: 5,
