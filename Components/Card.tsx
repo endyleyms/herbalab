@@ -8,7 +8,8 @@ const Card = () => {
     <View style={styles.container}>
       <Search />
       <View style={styles.cardPlants}>
-        <Text style={styles.familia}>Familia</Text>        
+        <Text style={styles.familia}>Familia</Text>   
+        <Text>Sección de imagenes</Text>     
         <View>
           <Text>Género:</Text>
           <Text>Especie:</Text>
@@ -27,7 +28,7 @@ const styles= StyleSheet.create({
     position: 'relative',
     left: 30,
     top: 40,
-    height: '50%'
+    height: '100%'
   },
   cardPlants:{
     alignContent: 'center',
@@ -41,7 +42,7 @@ const styles= StyleSheet.create({
   familia:{
     backgroundColor: '#BCD4BF',
     width: '100%',
-    height: '20%',
+    height: '30%',
     padding: 10,
     alignItems: 'center',
     

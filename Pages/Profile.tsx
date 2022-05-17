@@ -4,7 +4,9 @@ import React from 'react'
 const Profile = () => {
   return (
     <View>
-      <Text>Profile</Text>
+      <Text>card foto perfil</Text>
+      <Text>form con información básica del usuario</Text>
+      <Text></Text>
     </View>
   )
 }

@@ -8,7 +8,8 @@ import Singup from './Pages/Singup';
 import Explore from './Pages/Explore';
 import Herbario from './Pages/Herbario';
 import Profile from './Pages/Profile';
-import Card from './Components/Card';
+import Information from './Components/Information';
+import Register from './Components/Register';
 
 const Tab = createBottomTabNavigator();
 
@@ -118,10 +119,10 @@ export default function App() {
           options={{ headerShown: false }}
           />  
           <Stack.Screen 
-          name="Card" 
-          component={Card}
+          name="Information" 
+          component={Information}
           options={{
-            title: 'Card',
+            title: 'Information',
             headerStyle: {
               backgroundColor: '#BCD4BF',
             },
@@ -129,7 +130,20 @@ export default function App() {
             headerTitleStyle: {
               fontWeight: 'bold',
             },
-          }} />        
+          }} /> 
+          <Stack.Screen 
+          name="Register" 
+          component={Register}
+          options={{
+            title: 'Register',
+            headerStyle: {
+              backgroundColor: '#BCD4BF',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }} />       
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>
