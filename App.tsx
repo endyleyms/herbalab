@@ -2,6 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {SafeAreaView, StyleSheet} from "react-native";
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import Login from './Pages/Login';
 import Singup from './Pages/Singup';
 import Explore from './Pages/Explore';
@@ -13,7 +14,28 @@ const Tab = createBottomTabNavigator();
 
 function Home() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+    screenOptions={({ route }) => ({
+      tabBarIcon: ({ focused, color, size }) => {
+        let iconName;
+
+        if (route.name === 'Explore') {
+          iconName = focused
+            ? 'ios-search'
+            : 'ios-search-outline';
+        } else if (route.name === 'Herbario') {
+          iconName = focused ? 'ios-flower' : 'ios-flower';
+        } else{
+          iconName = focused ? 'ios-person' : 'ios-person';
+        }
+
+        // You can return any component that you like here!
+        return <Ionicons name={iconName} size={size} color={color} />;
+      },
+      tabBarActiveTintColor: '#F2DCAE',
+      tabBarInactiveTintColor: 'gray',
+    })}
+    >
       <Tab.Screen 
       name="Explore" 
       component={Explore}
