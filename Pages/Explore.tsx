@@ -1,6 +1,6 @@
 import { View, StyleSheet, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { collection, getDocs, doc } from 'firebase/firestore';
+import { collection, getDocs, } from 'firebase/firestore';
 import firebaseModule from '../database/firebase'
 import Collection from '../Components/Collection'
 

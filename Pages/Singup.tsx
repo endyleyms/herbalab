@@ -15,7 +15,10 @@ export default function Singup({navigation}) {
         // Signed in
         const user = userCredential.user;
         console.log(user.email)
-        navigation.navigate('Home')
+        navigation.navigate('Home', {
+          screen: 'Profile',
+          params:{email: email}
+        })
         // ...
       })
       .catch((error) => {
