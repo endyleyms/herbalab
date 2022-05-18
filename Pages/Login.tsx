@@ -18,7 +18,6 @@ export default function Login({navigation}) {
         console.log(user.email)
         navigation.navigate('Home', {
           screen: 'Profile',
-          params:{email: email}
         })
         // ...
       })

@@ -33,8 +33,8 @@ const styles= StyleSheet.create({
   familia:{
     backgroundColor: '#BCD4BF',
     width: '100%',
-    height: '30%',
-    padding: 8,    
+    height: '40%',
+    padding: 5,    
   }
 })
 

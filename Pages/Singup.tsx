@@ -2,29 +2,35 @@ import React from "react";
 import { Pressable, SafeAreaView, TextInput, StyleSheet, View, Text } from "react-native";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
 import firebaseModule from '../database/firebase'
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 import Hello from '../Components/MyComponent';
 
 export default function Singup({navigation}) {
   const [email, setEmail] = React.useState('');
   const [password, setPasswor] = React.useState('');
+  const [name, setName] = React.useState('');
+  const [lastName, setlastName] = React.useState('');
 
-  const handleCreateUser  =  () =>{
-    const auth = getAuth(firebaseModule.app);
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user.email)
-        navigation.navigate('Home', {
-          screen: 'Profile',
-          params:{email: email}
-        })
-        // ...
+  const handleCreateUser  = async () =>{
+    try {
+      const auth = getAuth(firebaseModule.app);
+      const res = await createUserWithEmailAndPassword(auth, email, password)
+      await setDoc(doc(firebaseModule.db, 'users', res.user.uid),{
+        name: name,
+        lastName: lastName
       })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      })
+    navigation.navigate('Home', {
+      screen: 'Profile',
+      params:{
+        name: name,
+        lastName: lastName,
+        email: email
+      }
+    })
+    } catch (error) {
+      console.log(error)
+    }
+    
   }
     
   
@@ -33,6 +39,26 @@ export default function Singup({navigation}) {
       <Hello />
     </View>
     <SafeAreaView style={styles.container1}>
+          <View>
+            <Text>Name</Text>
+            <View style={styles.container}>
+              <TextInput
+                style={styles.input}
+                value={name}
+                onChangeText={(text) =>setName(text)}
+                placeholder="Your email" />
+            </View>
+          </View>
+          <View>
+            <Text>Last Name</Text>
+            <View style={styles.container}>
+              <TextInput
+                style={styles.input}
+                value={lastName}
+                onChangeText={(text) =>setlastName(text)}
+                placeholder="Your email" />
+            </View>
+          </View>
           <View>
             <Text>Email</Text>
             <View style={styles.container}>
