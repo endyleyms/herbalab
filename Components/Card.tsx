@@ -1,9 +1,8 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
-import Search from './Search'
 
 const Card = ({familia, genero, especie}) => {
-
+  
   return (
     <View style={styles.cardPlants}>
       <Text style={styles.familia}>{familia}</Text>   
