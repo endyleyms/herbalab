@@ -30,11 +30,11 @@ const Profile = () => {
       console.log(result);
   
       if (!result.cancelled) {
+        setImage(result.uri);
         const refImage = ref(firebaseModule.storage, 'images');
         const img= await fetch(result.uri);
         const bytes = await img.blob();
         const imageupload =await uploadBytes(refImage, bytes);
-        setImage(result.uri);
         const update ={
           photoURL: image
         }
@@ -43,11 +43,11 @@ const Profile = () => {
       }      
     }
     const photoURL = user.photoURL;
-    console.log('photoURL', photoURL)
+    console.log(photoURL)
     console.log('image', image)
     
     useEffect(()=>{
-      image && uploadFile();
+      setImage(image)
     },[image])
 
   return (
