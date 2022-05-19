@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {getFirestore }from 'firebase/firestore/';
+import { getStorage } from "firebase/storage";
 import {API_KEY, AUTH_DOMAIN, PROJECT_ID, STORAGE_BUCKET, MESSAGING_SENDER_ID, APP_ID, MEASUREMENT_ID} from '@env'
 
 const firebaseConfig = {
@@ -16,8 +17,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const analytics = getAnalytics(app);
+const storage = getStorage(app);
 export default {
     app,
     analytics,
-    db
+    db,
+    storage
 }

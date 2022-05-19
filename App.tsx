@@ -1,12 +1,85 @@
 import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {SafeAreaView, StyleSheet} from "react-native";
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import Login from './Pages/Login';
 import Singup from './Pages/Singup';
 import Explore from './Pages/Explore';
-import Herbarium from './Pages/Herbarium';
-import NewRegister from './Pages/NewRegister';
-import Card from './Components/Card';
+import Herbario from './Pages/Herbario';
+import Profile from './Pages/Profile';
+import Information from './Components/Information';
+import Register from './Components/Register';
+
+const Tab = createBottomTabNavigator();
+
+function Home() {
+  return (
+    <Tab.Navigator
+    screenOptions={({ route }) => ({
+      tabBarIcon: ({ focused, color, size }) => {
+        let iconName;
+
+        if (route.name === 'Explore') {
+          iconName = focused
+            ? 'ios-search'
+            : 'ios-search-outline';
+        } else if (route.name === 'Herbario') {
+          iconName = focused ? 'ios-flower' : 'ios-flower';
+        } else{
+          iconName = focused ? 'ios-person' : 'ios-person';
+        }
+
+        // You can return any component that you like here!
+        return <Ionicons name={iconName} size={size} color={color} />;
+      },
+      tabBarActiveTintColor: '#F2DCAE',
+      tabBarInactiveTintColor: 'gray',
+    })}
+    >
+      <Tab.Screen 
+      name="Explore" 
+      component={Explore}
+      options={{
+        title: 'Explore',
+        headerStyle: {
+          backgroundColor: '#BCD4BF',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }} />
+      <Tab.Screen 
+      name="Herbario" 
+      component={Herbario}
+      options={{
+        title: 'Herbario',
+        headerStyle: {
+          backgroundColor: '#BCD4BF',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }} />
+      <Tab.Screen
+      name="Profile" 
+      component={Profile}
+      options={{
+        title: 'Profile',
+        headerStyle: {
+          backgroundColor: '#BCD4BF',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}/>
+    </Tab.Navigator>
+  );
+}
+
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -39,12 +112,17 @@ export default function App() {
             headerTitleStyle: {
               fontWeight: 'bold',
             },
-          }} />
+          }} /> 
           <Stack.Screen 
-          name="Explore" 
-          component={Explore}
+          name="Home" 
+          component={Home}
+          options={{ headerShown: false }}
+          />  
+          <Stack.Screen 
+          name="Information" 
+          component={Information}
           options={{
-            title: 'Explore',
+            title: 'Information',
             headerStyle: {
               backgroundColor: '#BCD4BF',
             },
@@ -52,13 +130,12 @@ export default function App() {
             headerTitleStyle: {
               fontWeight: 'bold',
             },
-          }} />
-          
+          }} /> 
           <Stack.Screen 
-          name="Herbarium" 
-          component={Herbarium}
+          name="Register" 
+          component={Register}
           options={{
-            title: 'Herbarium',
+            title: 'Register',
             headerStyle: {
               backgroundColor: '#BCD4BF',
             },
@@ -66,33 +143,7 @@ export default function App() {
             headerTitleStyle: {
               fontWeight: 'bold',
             },
-          }} />
-          <Stack.Screen 
-          name="NewRegister" 
-          component={NewRegister}
-          options={{
-            title: 'NewRegister',
-            headerStyle: {
-              backgroundColor: '#BCD4BF',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          }} />  
-          <Stack.Screen 
-          name="Card" 
-          component={Card}
-          options={{
-            title: 'Card',
-            headerStyle: {
-              backgroundColor: '#BCD4BF',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          }} />        
+          }} />       
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

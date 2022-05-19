@@ -1,52 +1,40 @@
-import { View, Text, Image,StyleSheet } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
-import Search from './Search'
 
-const Card = () => {
-
+const Card = ({familia, genero, especie}) => {
+  
   return (
-    <View style={styles.container}>
-      <Search />
-      <View style={styles.cardPlants}>
-        <Text style={styles.familia}>Familia</Text>        
-        <View>
-          <Text>clase: </Text>
-          <Text>Orden:</Text>
-          <Text>Familia:</Text>
-          <Text>Género:</Text>
-          <Text>Especie:</Text>
-        </View>
-        <Text>Description</Text>
+    <View style={styles.cardPlants}>
+      <Text style={styles.familia}>{familia}</Text>   
+      <Text>Sección de imagenes</Text>     
+      <View>
+        <Text>Género: {genero}</Text>
+        <Text>Especie: {especie}</Text>
       </View>
     </View>
+
     
   )
 }
 
 const styles= StyleSheet.create({
-  container:{
-    display: 'flex',
-    flexDirection: 'column',
-    position: 'relative',
-    left: 30,
-    top: 40,
-  },
   cardPlants:{
+    display: 'flex',
+    justifyContent: 'space-around',
     alignContent: 'center',
     backgroundColor: 'white',
     width: '80%',
-    height: '50%',
-    padding: 10,
+    height: '30%',
+    padding: 5,
     marginVertical: 5,
     borderRadius: 5,
+    paddingBottom: 5
   },
   familia:{
     backgroundColor: '#BCD4BF',
     width: '100%',
-    height: '20%',
-    padding: 10,
-    alignItems: 'center',
-    
+    height: '40%',
+    padding: 5,    
   }
 })
 

@@ -1,27 +1,23 @@
 import React from "react";
 import { Pressable, SafeAreaView, TextInput, StyleSheet, View, Text } from "react-native";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
 import firebaseModule from '../database/firebase'
 import Hello from '../Components/MyComponent';
 
 export default function Singup({navigation}) {
   const [email, setEmail] = React.useState('');
   const [password, setPasswor] = React.useState('');
+  const [name, setName] = React.useState('');
 
-  const handleCreateUser  =  () =>{
+  const handleCreateUser  = async () =>{
     const auth = getAuth(firebaseModule.app);
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user.email)
-        navigation.navigate('Explore')
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      })
+    await createUserWithEmailAndPassword(auth, email, password)
+    await updateProfile(auth.currentUser,{
+      displayName: name
+    })
+    navigation.navigate('Home', {
+      screen: 'Profile',  
+    })
   }
     
   
@@ -30,6 +26,16 @@ export default function Singup({navigation}) {
       <Hello />
     </View>
     <SafeAreaView style={styles.container1}>
+          <View>
+            <Text>Name</Text>
+            <View style={styles.container}>
+              <TextInput
+                style={styles.input}
+                value={name}
+                onChangeText={(text) =>setName(text)}
+                placeholder="Your Name" />
+            </View>
+          </View>
           <View>
             <Text>Email</Text>
             <View style={styles.container}>

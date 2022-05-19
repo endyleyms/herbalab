@@ -1,6 +1,6 @@
-import { View, StyleSheet, FlatList, ScrollView } from 'react-native'
+import { View, StyleSheet, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { collection, getDocs, getDoc } from 'firebase/firestore';
+import { collection, getDocs, } from 'firebase/firestore';
 import firebaseModule from '../database/firebase'
 import Collection from '../Components/Collection'
 
@@ -15,7 +15,6 @@ const Explore = () => {
     console.log(familiaList)
     return familiaList
   }
-  console.log(getFamilia)
 
   useEffect(()=> {
     getFamilia()
