@@ -1,13 +1,14 @@
 import { View, Text, Image, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 
-const Collection = ({familia, image}) => {
+const Collection = ({familia, image, item}) => {
   const navigation = useNavigation();
    
   return (
     <View style={styles.cardPlants}>
       <Text style={styles.familia} onPress={() => navigation.navigate('Information', {
-        familia: familia,
+        familia,
+        item
       })}>{familia}</Text>
       <Image 
       style={{ width: '80%', height: '50%', alignSelf: 'center', padding: 30 }}

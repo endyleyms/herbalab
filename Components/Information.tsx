@@ -7,21 +7,16 @@ import Search from './Search';
 
 const Information = ({route}) => {
 
-  const {familia} = route.params;
+  const {familia, item} = route.params;
 
   const [grupos, setgrupos] = useState([{}])
   async function getFamilia() {
-    const familiaCol = collection(firebaseModule.db, "familia");
-    const familiaSnapshot = await getDocs(familiaCol);
-    console.log(familiaSnapshot)
-    familiaSnapshot.docs.map(async(familia)=>{
-      const familiacolref = collection(firebaseModule.db, `familia/${familia.id}/grupos`);
+    const familiacolref = collection(firebaseModule.db, `/familia/${item.id}/grupos/`);
       const grupoDoc = await getDocs(familiacolref);
       const grupoList = grupoDoc.docs.map(doc => doc.data());
-      setgrupos(grupoList);
-      console.log(grupoList)
-    })
+    setgrupos(grupoList)
   }
+  console.log(grupos)
 
   useEffect(()=> {
     getFamilia()

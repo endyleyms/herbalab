@@ -10,7 +10,8 @@ const Explore = () => {
     const familiaCol = collection(firebaseModule.db, "familia");
     const familiaSnapshot = await getDocs(familiaCol);
     console.log(familiaSnapshot)
-    const familiaList= familiaSnapshot.docs.map(doc => doc.data());
+    const familiaList= familiaSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }
+    ));
     setFamilies(familiaList);
     console.log(familiaList)
     return familiaList
@@ -23,7 +24,7 @@ const Explore = () => {
   return (
     <View style={styles.container}>
       <ScrollView horizontal={false} style={{width: '100%', height: '100%'}}>
-        {families.map((item)=> <Collection image={item.image} familia={item.familia}/>)}
+        {families.map((item)=> <Collection image={item.image} familia={item.familia} item={item}/>)}
       </ScrollView>
             
     </View>
