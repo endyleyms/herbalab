@@ -6,7 +6,9 @@ const Collection = ({familia, image}) => {
    
   return (
     <View style={styles.cardPlants}>
-      <Text style={styles.familia} onPress={() => navigation.navigate('Information')}>{familia}</Text>
+      <Text style={styles.familia} onPress={() => navigation.navigate('Information', {
+        familia: familia,
+      })}>{familia}</Text>
       <Image 
       style={{ width: '80%', height: '50%', alignSelf: 'center', padding: 30 }}
       source={{uri: image}} />

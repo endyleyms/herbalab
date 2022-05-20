@@ -47,18 +47,17 @@ const Profile = () => {
     console.log('image', image)
     
     useEffect(()=>{
-      image && uploadFile();
+      setImage(image)
     },[image])
 
   return (
     <View style={styles.container}>
-      <Image source={{ uri: image }} style={{ width: 200, height: 200, borderRadius: 100 }} />
+      <Image source={{ uri: photoURL }} style={{ width: 200, height: 200, borderRadius: 100 }} />
       <Pressable style={styles.buton}>
         <Text style={styles.text} onPress={uploadFile} >Upload image</Text>
       </Pressable>
       <Text>Name: {user.displayName}</Text>
       <Text>Email: {user.email}</Text>
-      <Text></Text>
     </View>
   )
 }
