@@ -5,7 +5,10 @@ import firebaseModule from '../database/firebase'
 import Card from './Card';
 import Search from './Search';
 
-const Information = () => {
+const Information = ({route}) => {
+
+  const {familia} = route.params;
+
   const [grupos, setgrupos] = useState([{}])
   async function getFamilia() {
     const familiaCol = collection(firebaseModule.db, "familia");
@@ -26,6 +29,7 @@ const Information = () => {
 
   return (
     <View style={styles.container}>
+      <Text>Grupo: {familia}</Text>
       <Text>Mapa</Text>
       <Search/>
       <ScrollView horizontal={false} style={{width: '100%', height: '100%'}}>
