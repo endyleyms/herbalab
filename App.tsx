@@ -22,10 +22,10 @@ function Home() {
 
         if (route.name === 'Explore') {
           iconName = focused
-            ? 'ios-search'
-            : 'ios-search-outline';
+            ? 'ios-flower'
+            : 'ios-flower';
         } else if (route.name === 'Herbario') {
-          iconName = focused ? 'ios-flower' : 'ios-flower';
+          iconName = focused ? 'ios-add-circle' : 'ios-add-circle';
         } else{
           iconName = focused ? 'ios-person' : 'ios-person';
         }

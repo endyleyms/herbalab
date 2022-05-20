@@ -58,7 +58,6 @@ const Profile = () => {
       </Pressable>
       <Text>Name: {user.displayName}</Text>
       <Text>Email: {user.email}</Text>
-      <Text></Text>
     </View>
   )
 }

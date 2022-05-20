@@ -61,7 +61,7 @@ export default function Singup({navigation}) {
           <Pressable style={styles.buton}>
             <Text style={styles.text} onPress={ handleCreateUser} >Singup</Text>
           </Pressable>
-      </SafeAreaView></>
+    </SafeAreaView></>
   );
 };
 
