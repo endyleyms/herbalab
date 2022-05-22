@@ -13,7 +13,7 @@ const Information = ({route}) => {
   async function getFamilia() {
     const familiacolref = collection(firebaseModule.db, `/familia/${item.id}/grupos/`);
       const grupoDoc = await getDocs(familiacolref);
-      const grupoList = grupoDoc.docs.map(doc => doc.data());
+      const grupoList = grupoDoc.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     setgrupos(grupoList)
   }
   console.log(grupos)
@@ -28,7 +28,7 @@ const Information = ({route}) => {
       <Text>Mapa</Text>
       <Search/>
       <ScrollView horizontal={false} style={{width: '100%', height: '100%'}}>
-        {grupos.map((item)=> <Card familia={item.familia} genero={item.genero} especie={item.especie}/>)}
+        {grupos.map((item)=> <Card familia={item.familia} genero={item.genero} especie={item.especie} item={item}/>)}
       </ScrollView>
       
     </View>

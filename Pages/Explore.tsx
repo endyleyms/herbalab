@@ -10,8 +10,7 @@ const Explore = () => {
     const familiaCol = collection(firebaseModule.db, "familia");
     const familiaSnapshot = await getDocs(familiaCol);
     console.log(familiaSnapshot)
-    const familiaList= familiaSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }
-    ));
+    const familiaList= familiaSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     setFamilies(familiaList);
     console.log(familiaList)
     return familiaList
