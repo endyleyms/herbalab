@@ -1,4 +1,4 @@
-import { Pressable, Image, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Pressable, Image, StyleSheet, Text, TextInput, View, ScrollView } from 'react-native'
 import React from 'react'
 
 const Register = () => {
@@ -15,11 +15,12 @@ const Register = () => {
 
   return (
     <View style={styles.container1}>
-      <Text>Ingresa a continuación tu nuevo registro</Text>
-      <Image source={{ uri: "https://pin.it/3E3f0QO"  }} style={{ width: 200, height: 200, borderRadius: 100 }} />
-      <Pressable style={styles.butonI}>
-        <Text style={styles.text} >Upload image</Text>
-      </Pressable>
+      <ScrollView horizontal={false}>
+        <Text>Ingresa a continuación tu nuevo registro</Text>
+        <Image source={{ uri: "https://pin.it/3E3f0QO"  }} style={{ width: 100, height: 100, borderRadius: 100 }} />
+        <Pressable style={styles.butonI}>
+          <Text style={styles.text} >Upload image</Text>
+        </Pressable>
         <View>
           <Text>Familia</Text>
           <View style={styles.container}>
@@ -76,6 +77,8 @@ const Register = () => {
         <Pressable style={styles.buton}>
           <Text style={styles.text} onPress={handleCreateRegister} >Register</Text>
         </Pressable>
+      </ScrollView>
+      
     </View>
   )
 }
@@ -105,7 +108,7 @@ const styles= StyleSheet.create({
   buton:{
     backgroundColor: '#F2DCAE',
     width: '80%',
-    height: '5%',
+    height: '7%',
     padding: 10,
     marginVertical: 5,
     alignItems: 'center',
@@ -118,7 +121,7 @@ const styles= StyleSheet.create({
   butonI:{
     backgroundColor: '#F2DCAE',
     width: '50%',
-    height: '5%',
+    height: '7%',
     padding: 10,
     marginVertical: 5,
     alignItems: 'center',
