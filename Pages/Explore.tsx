@@ -22,7 +22,7 @@ const Explore = () => {
 
   return (
     <View style={styles.container}>
-      <ScrollView horizontal={false} style={{width: '100%', height: '100%'}}>
+      <ScrollView horizontal={false}>
         {families.map((item)=> <Collection image={item.image} familia={item.familia} item={item}/>)}
       </ScrollView>
             

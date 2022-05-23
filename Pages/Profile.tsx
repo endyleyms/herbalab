@@ -1,14 +1,14 @@
-import { View, Text, StyleSheet, Pressable, Image, TextInput } from 'react-native'
+import { View, Text, StyleSheet, Pressable, Image, TextInput, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import * as ImagePicker from 'expo-image-picker'
-import { getAuth, updateProfile } from "firebase/auth";
+import { getAuth, updateProfile, updateEmail, updatePassword } from "firebase/auth";
 import { ref, uploadBytes  } from "firebase/storage";
 import firebaseModule from '../database/firebase'
 
 const Profile = () => {
   const [email, setEmail] = React.useState('');
   const [name, setName] = React.useState('');
-  const [phone, setPhone] = React.useState('');
+  const [password, setPassword] = React.useState('');
     const auth = getAuth();
     const user = auth.currentUser;
     if (user !== null) {
@@ -43,15 +43,35 @@ const Profile = () => {
     }
     const photoURL = user.photoURL;
     console.log('photoURL',  photoURL)
+
+    const updatePhoto = ()=>{
+      const auth = getAuth(firebaseModule.app);
+        updateProfile(auth.currentUser,{
+          photoURL: image,
+        })
+    }
+
     const updateProfileUser = ()=>{
       const auth = getAuth(firebaseModule.app);
       updateProfile(auth.currentUser,{
         displayName: name,
-        email: email,
-        photoURL: image,
-        phoneNumber: phone,
       })
+      updateEmail(auth.currentUser, {
+        email: email,
+      })
+    }
 
+    const UpdateEmail = ()=>{
+      const auth = getAuth(firebaseModule.app);
+      updateEmail(auth.currentUser, {
+        email: email,
+      })
+    }
+    const UpdatePassword = ()=>{
+      const auth = getAuth(firebaseModule.app);
+      updatePassword(auth.currentUser, {
+        password: password,
+      })
     }
     
     useEffect(()=>{
@@ -60,27 +80,29 @@ const Profile = () => {
 
   return (
     <View style={styles.container1}>
-      <View style={styles.container2}>
-       <Image source={{ uri: image }} style={{ width: 200, height: 200, borderRadius: 100 }} />
-      <Pressable style={styles.buton}>
-        <Text style={styles.text} onPress={uploadFile} >Upload image</Text>
-      </Pressable>
-      <Text>Name: {user.displayName}</Text>
-      <Text>Email: {user.email}</Text>
-      <Text>Phone: {user.phoneNumber}</Text> 
-      </View>
-      
-      <View>
+      <ScrollView horizontal={false}>
+        <View style={styles.container2}>
+          <Image source={{ uri: photoURL }} style={{ width: 150, height: 150, borderRadius: 100, left:30, }} />
+          <Pressable style={styles.buton}>
+            <Text style={styles.text} onPress={uploadFile} >Upload</Text>
+          </Pressable>
+          <Pressable style={styles.buton}>
+            <Text style={styles.text} onPress={updatePhoto} >Update</Text>
+          </Pressable>
+          <Text>Name: {user.displayName}</Text>
+          <Text>Email: {user.email}</Text>
+        </View>
           <Text>Name</Text>
           <View style={styles.container}>
             <TextInput
               style={styles.input}
               value={name}
               onChangeText={(text) =>setName(text)}
-              placeholder="your Name" />
+              placeholder="Your Name" />
           </View>
-        </View>
-        <View>
+          <Pressable style={styles.butonP}>
+            <Text style={styles.text} onPress={updateProfileUser} >Update Name</Text>
+          </Pressable>
           <Text>Email</Text>
           <View style={styles.container}>
             <TextInput
@@ -89,20 +111,22 @@ const Profile = () => {
               onChangeText={(text) =>setEmail(text)}
               placeholder="Your Email" />
           </View>
-        </View>
-        <View>
-          <Text>Phone number</Text>
+          <Pressable style={styles.butonP}>
+            <Text style={styles.text} onPress={UpdateEmail} >Update Email</Text>
+          </Pressable>
+          <Text>Password</Text>
           <View style={styles.container}>
             <TextInput
               style={styles.input}
-              value={phone}
-              onChangeText={(text) =>setPhone(text)}
-              placeholder="Your Phone" />
+              value={password}
+              onChangeText={(text) =>setPassword(text)}
+              placeholder="Your Password" />
           </View>
-        </View>
         <Pressable style={styles.butonP}>
-          <Text style={styles.text} onPress={updateProfileUser} >Update</Text>
+          <Text style={styles.text} onPress={UpdatePassword} >Update Password</Text>
         </Pressable>
+      </ScrollView>
+      
     </View>
   )
 }
@@ -114,8 +138,8 @@ const styles = StyleSheet.create({
     position: 'relative',
     top: 20,
     alignItems: 'stretch',
-    width: '100%',
-    left: 35
+    left: 35,
+    padding: 3
   },
   container2:{
     width: '100%',
@@ -132,11 +156,11 @@ const styles = StyleSheet.create({
   },
   buton:{
     backgroundColor: '#F2DCAE',
-    width: '30%',
-    height: '10%',
+    width: '20%',
+    height: '8%',
     padding: 5,
     marginVertical: 5,
-    alignItems: 'center',
+    left:50,
     borderRadius: 5,
   },
   text:{
@@ -148,9 +172,8 @@ const styles = StyleSheet.create({
   },
   butonP:{
     backgroundColor: '#F2DCAE',
-    width: '80%',
+    width: '50%',
     height: '5%',
-    padding: 10,
     marginVertical: 5,
     alignItems: 'center',
     borderRadius: 5,

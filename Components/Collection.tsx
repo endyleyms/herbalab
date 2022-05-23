@@ -11,21 +11,18 @@ const Collection = ({familia, image, item}) => {
         item
       })}>{familia}</Text>
       <Image 
-      style={{ width: '80%', height: '50%', alignSelf: 'center', padding: 30 }}
+      style={{ width: '80%', height: '80%', alignSelf: 'center', padding: 40 }}
       source={{uri: image}} />
-      <Text style={styles.text}>Número</Text>
     </View>
   )
 }
 const styles= StyleSheet.create({
   cardPlants:{
     display: 'flex',
-    justifyContent: 'space-around',
     alignContent: 'center',
     backgroundColor: 'white',
     width: '80%',
     height: '15%',
-    padding: 5,
     marginVertical: 5,
     borderRadius: 5,
     paddingBottom: 5
