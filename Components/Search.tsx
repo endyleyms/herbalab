@@ -1,34 +1,17 @@
-import { View, TextInput, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
+import { Searchbar } from 'react-native-paper';
 import React from 'react'
 
 export default function Search () {
   const [searchQuery, setSearchQuery] = React.useState('');
+  const onChangeSearch = query => setSearchQuery(query);
   return (
     <View >
-      <View style={styles.container}>
-        <TextInput 
-        style={styles.input}
-        value={searchQuery}
-        onChangeText={(text) =>setSearchQuery(text)}
-        placeholder="Search"
-        />
-      </View>
+      <Searchbar
+      placeholder="Search"
+      onChangeText={onChangeSearch}
+      value={searchQuery}
+    />
     </View>
   )
 }
-
-const styles= StyleSheet.create({
-  container:{
-    backgroundColor: 'white',
-    width: '80%',
-    height: 50,
-    borderColor: '#e8e8e8',
-    borderWidth: 1,
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    marginVertical: 5,
-  },
-  input:{
-    height: 50
-  },
-})

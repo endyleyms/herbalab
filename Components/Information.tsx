@@ -57,10 +57,11 @@ const styles = StyleSheet.create({
     position: 'relative',
     left: 30,
     top: 40,
-    height: '100%'
+    height: '100%',
+    width: '80%',
   },
   table:{
     backgroundColor: 'white',
-    width: '80%',
+    width: '100%',
   },
 })
