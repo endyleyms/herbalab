@@ -1,16 +1,28 @@
-import { Pressable, Image, StyleSheet, Text, TextInput, View, ScrollView } from 'react-native'
+import { Pressable, Image, StyleSheet, Text, TextInput, View, ScrollView, Alert } from 'react-native'
+import { collection, addDoc } from "firebase/firestore";
+import firebaseModule from '../database/firebase'
 import React from 'react'
 
 const Register = () => {
-  const [familia, setfamilia] = React.useState('');
+
+  const [family, setfamily] = React.useState('');
   const [genero, setGenero] = React.useState('');
-  const [espcie, setEspecie] = React.useState('');
+  const [especie, setEspecie] = React.useState('');
   const [unibation, setUbication] = React.useState('');
   const [description, setDescription] = React.useState('');
 
 
+
   const handleCreateRegister  = async () =>{
-    
+    /*const docRef = await addDoc(collection(firebaseModule.db,`/familia/WW6rF9dCAN7riaC6frYU/grupos/`), {
+      familia: family,
+      genero: genero,
+      especie: especie
+    });
+    console.log("Document written with ID: ", docRef.id);*/
+    Alert.alert(
+        'You need to...'
+    )
   }
 
   return (
@@ -26,8 +38,8 @@ const Register = () => {
           <View style={styles.container}>
             <TextInput
               style={styles.input}
-              value={familia}
-              onChangeText={(text) =>setfamilia(text)}
+              value={family}
+              onChangeText={(text) =>setfamily(text)}
               placeholder="Familia" />
           </View>
         </View>
@@ -46,9 +58,8 @@ const Register = () => {
           <View style={styles.container}>
             <TextInput
               style={styles.input}
-              value={espcie}
+              value={especie}
               onChangeText={(text) =>setEspecie(text)}
-              secureTextEntry={true}
               placeholder="Especie" />
           </View>
         </View>
@@ -59,7 +70,6 @@ const Register = () => {
               style={styles.input}
               value={unibation}
               onChangeText={(text) =>setUbication(text)}
-              secureTextEntry={true}
               placeholder="Ubicación" />
           </View>
         </View>
@@ -70,7 +80,6 @@ const Register = () => {
               style={styles.input}
               value={description}
               onChangeText={(text) =>setDescription(text)}
-              secureTextEntry={true}
               placeholder="Descripción" />
           </View>
         </View>

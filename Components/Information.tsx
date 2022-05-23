@@ -4,9 +4,10 @@ import React, { useEffect, useState } from 'react'
 import { collection, getDocs} from 'firebase/firestore';
 import firebaseModule from '../database/firebase'
 import Search from './Search';
+import { useNavigation } from '@react-navigation/native';
 
 const Information = ({route}) => {
-
+  const navigation = useNavigation();
   const {familia, item} = route.params;
 
   const [grupos, setgrupos] = useState([{}])
@@ -17,7 +18,7 @@ const Information = ({route}) => {
     setgrupos(grupoList)
   }
   console.log(grupos)
-
+  
   useEffect(()=> {
     getFamilia()
   }, [])
@@ -34,11 +35,14 @@ const Information = ({route}) => {
             <DataTable.Title>Género</DataTable.Title>
             <DataTable.Title>Especie</DataTable.Title>
           </DataTable.Header>      
-          {grupos.map((item)=>
-          <DataTable.Row>
-            <DataTable.Cell>{item.familia}</DataTable.Cell>
-            <DataTable.Cell>{item.genero}</DataTable.Cell>
-            <DataTable.Cell>{item.especie}</DataTable.Cell>
+          {grupos.map((group)=>
+          <DataTable.Row onPress={() => navigation.navigate('Detail', {
+            item,
+            group
+          })}>
+            <DataTable.Cell>{group.familia}</DataTable.Cell>
+            <DataTable.Cell>{group.genero}</DataTable.Cell>
+            <DataTable.Cell>{group.especie}</DataTable.Cell>
           </DataTable.Row>
           )}
         </DataTable>
@@ -58,7 +62,7 @@ const styles = StyleSheet.create({
     left: 30,
     top: 40,
     height: '100%',
-    width: '80%',
+    width: '90%',
   },
   table:{
     backgroundColor: 'white',

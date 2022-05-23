@@ -10,6 +10,7 @@ import Herbario from './Pages/Herbario';
 import Profile from './Pages/Profile';
 import Information from './Components/Information';
 import Register from './Components/Register';
+import Detail from './Components/Detail';
 
 const Tab = createBottomTabNavigator();
 
@@ -143,7 +144,20 @@ export default function App() {
             headerTitleStyle: {
               fontWeight: 'bold',
             },
-          }} />       
+          }} /> 
+          <Stack.Screen 
+          name="Detail" 
+          component={Detail}
+          options={{
+            title: 'Register',
+            headerStyle: {
+              backgroundColor: '#BCD4BF',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }} />    
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>
