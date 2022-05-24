@@ -36,7 +36,6 @@ const Information = ({route}) => {
           </DataTable.Header>      
           {grupos.map((group)=>
           <DataTable.Row onPress={() => navigation.navigate('Detail', {
-            item,
             group
           })}>
             <DataTable.Cell>{group.familia}</DataTable.Cell>
