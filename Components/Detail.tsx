@@ -17,14 +17,12 @@ const Detail = ({route}) => {
         <Text style={styles.text}>Género: {group.genero}</Text>
         <Text style={styles.text}>Especie: {group.especie}</Text>
         <Text style={styles.text}>{group.description}</Text>
-        <Text style={styles.text}>Ubicación: {group.ubication.latitude}</Text>
-        <Text style={styles.text}>Ubicación: {group.ubication.longitude}</Text>
         <View style={styles.containerM}>
           <MapView 
           style={styles.map}
           region ={{
-            latitude: group.ubication.latitude,
-            longitude: group.ubication.longitude,
+            latitude: group.ubication?.latitude,
+            longitude: group.ubication?.longitude,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}
