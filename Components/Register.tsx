@@ -1,33 +1,71 @@
-import { Pressable, Image, StyleSheet, Text, TextInput, View, ScrollView } from 'react-native'
-import React from 'react'
+import { Pressable, Image, StyleSheet, Text, TextInput, View, ScrollView, Alert } from 'react-native'
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import * as ImagePicker from 'expo-image-picker'
+import { collection, addDoc } from "firebase/firestore";
+import firebaseModule from '../database/firebase'
+import React, { useState } from 'react'
 
 const Register = () => {
-  const [familia, setfamilia] = React.useState('');
+
+  const [family, setfamily] = React.useState('');
   const [genero, setGenero] = React.useState('');
-  const [espcie, setEspecie] = React.useState('');
+  const [especie, setEspecie] = React.useState('');
   const [unibation, setUbication] = React.useState('');
   const [description, setDescription] = React.useState('');
 
+  const [image, setImage] = useState(null);
+
+  const uploadFile= async ()=>{
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+      
+    }
+    } catch (error) {
+      console.log(error)
+    }
+          
+  }
+
 
   const handleCreateRegister  = async () =>{
-    
+    const docRef = await addDoc(collection(firebaseModule.db,`/familia/WW6rF9dCAN7riaC6frYU/grupos/`), {
+      familia: family,
+      genero: genero,
+      especie: especie,
+      description: description,
+      image: image,
+    });
+    console.log("Document written with ID: ", docRef.id);
+    Alert.alert("Your register has been succsesful");
   }
 
   return (
     <View style={styles.container1}>
       <ScrollView horizontal={false}>
-        <Text>Ingresa a continuación tu nuevo registro</Text>
-        <Image source={{ uri: "https://pin.it/3E3f0QO"  }} style={{ width: 100, height: 100, borderRadius: 100 }} />
+        {!image && (
+          <MaterialCommunityIcons name="camera"  size={100} style={{ color:'gray' }} />
+        )}
+        {image && <Image source={{ uri: image}} style={{ width: 150, height: 150, borderRadius: 100, left:30, }} />}
         <Pressable style={styles.butonI}>
-          <Text style={styles.text} >Upload image</Text>
+          <Text style={styles.text} onPress={uploadFile} >Upload image</Text>
         </Pressable>
         <View>
           <Text>Familia</Text>
           <View style={styles.container}>
             <TextInput
               style={styles.input}
-              value={familia}
-              onChangeText={(text) =>setfamilia(text)}
+              value={family}
+              onChangeText={(text) =>setfamily(text)}
               placeholder="Familia" />
           </View>
         </View>
@@ -46,9 +84,8 @@ const Register = () => {
           <View style={styles.container}>
             <TextInput
               style={styles.input}
-              value={espcie}
+              value={especie}
               onChangeText={(text) =>setEspecie(text)}
-              secureTextEntry={true}
               placeholder="Especie" />
           </View>
         </View>
@@ -59,7 +96,6 @@ const Register = () => {
               style={styles.input}
               value={unibation}
               onChangeText={(text) =>setUbication(text)}
-              secureTextEntry={true}
               placeholder="Ubicación" />
           </View>
         </View>
@@ -70,7 +106,6 @@ const Register = () => {
               style={styles.input}
               value={description}
               onChangeText={(text) =>setDescription(text)}
-              secureTextEntry={true}
               placeholder="Descripción" />
           </View>
         </View>
