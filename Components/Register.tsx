@@ -10,7 +10,7 @@ const Register = () => {
   const [family, setfamily] = React.useState('');
   const [genero, setGenero] = React.useState('');
   const [especie, setEspecie] = React.useState('');
-  const [unibation, setUbication] = React.useState('');
+  const [ubication, setUbication] = React.useState('');
   const [description, setDescription] = React.useState('');
 
   const [image, setImage] = useState(null);
@@ -44,6 +44,7 @@ const Register = () => {
       especie: especie,
       description: description,
       image: image,
+      ubication:ubication,
     });
     console.log("Document written with ID: ", docRef.id);
     Alert.alert("Your register has been succsesful");
@@ -94,9 +95,9 @@ const Register = () => {
           <View style={styles.container}>
             <TextInput
               style={styles.input}
-              value={unibation}
+              value={ubication}
               onChangeText={(text) =>setUbication(text)}
-              placeholder="Ubicación" />
+              placeholder="Coordenadas" />
           </View>
         </View>
         <View>

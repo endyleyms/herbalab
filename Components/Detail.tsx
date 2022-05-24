@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
-import Maps from './Maps';
+import MapView from 'react-native-maps'
 
 const Detail = ({route}) => {
   const {group} = route.params;
@@ -17,8 +17,19 @@ const Detail = ({route}) => {
         <Text style={styles.text}>Género: {group.genero}</Text>
         <Text style={styles.text}>Especie: {group.especie}</Text>
         <Text style={styles.text}>{group.description}</Text>
-        <Text style={styles.text}>Ubicación: {group.ubication}</Text>
-        <Maps/>
+        <Text style={styles.text}>Ubicación: {group.ubication.latitude}</Text>
+        <Text style={styles.text}>Ubicación: {group.ubication.longitude}</Text>
+        <View style={styles.containerM}>
+          <MapView 
+          style={styles.map}
+          region ={{
+            latitude: group.ubication.latitude,
+            longitude: group.ubication.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+          />
+    </View>
     </View>
   )
 }
@@ -49,5 +60,15 @@ const styles = StyleSheet.create({
     text:{
         width: '90%',
         left:20
-    }
+    },
+    containerM: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    map: {
+      width:'90%',
+      height: '90%'
+    },
 })
