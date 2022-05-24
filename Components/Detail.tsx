@@ -40,14 +40,14 @@ const styles = StyleSheet.create({
     container:{
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         position: 'relative',
         left: 30,
-        top: 40,
+        
         height: '80%',
         width: '80%',
         backgroundColor: 'white',
-        marginVertical: 5,
+        marginVertical: 10,
         borderRadius: 5,
         paddingBottom: 5
     },
