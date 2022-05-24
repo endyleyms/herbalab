@@ -1,35 +1,33 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
-import React, { useEffect } from 'react'
-import { doc, getDoc} from 'firebase/firestore';
-import firebaseModule from '../database/firebase'
+import React from 'react'
+import MapView from 'react-native-maps'
 
 const Detail = ({route}) => {
-  const {group, item} = route.params;
+  const {group} = route.params;
+  console.log(group)
 
-  async function getFamilia() {
-    const familiacolref = doc(firebaseModule.db, `/familia/${item.id}/grupos/${group.id}`);
-      const grupoDoc = await getDoc(familiacolref);
-      if (grupoDoc.exists()) {
-        console.log("Document data:", grupoDoc.data());
-      } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-      }
-  }
   const image= group.image
-  
-  useEffect(()=> {
-    getFamilia()
-  }, [])
+
   return (
     <View style={styles.container}>
         <Text style={styles.familia}>Familia: {group.familia}</Text>
         <Image 
-        style={{ width: '50%', height: '50%', alignSelf: 'center' }}
+        style={{ width: '50%', height: '30%', alignSelf: 'center' }}
         source={{uri: image}} />
         <Text style={styles.text}>Género: {group.genero}</Text>
         <Text style={styles.text}>Especie: {group.especie}</Text>
         <Text style={styles.text}>{group.description}</Text>
+        <View style={styles.containerM}>
+          <MapView 
+          style={styles.map}
+          region ={{
+            latitude: group.ubication?.latitude,
+            longitude: group.ubication?.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+          />
+    </View>
     </View>
   )
 }
@@ -40,14 +38,14 @@ const styles = StyleSheet.create({
     container:{
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         position: 'relative',
         left: 30,
-        top: 40,
+        
         height: '80%',
         width: '80%',
         backgroundColor: 'white',
-        marginVertical: 5,
+        marginVertical: 10,
         borderRadius: 5,
         paddingBottom: 5
     },
@@ -60,5 +58,15 @@ const styles = StyleSheet.create({
     text:{
         width: '90%',
         left:20
-    }
+    },
+    containerM: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    map: {
+      width:'90%',
+      height: '90%'
+    },
 })

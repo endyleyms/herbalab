@@ -28,6 +28,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "HerbaLab es una plataforma que permite a la comunidad científica accedeer a datos de  diversidad de plantas en el país; con su respectiva descripción, clasificación taxónomica y ubicación. \nPensando en aquellos científicos que realizan expediciones y colectas de especies de plantas,  se desarrollo HerbaLab para tener un \"Herbario\" virtual",
+    "githubUrl": "https://github.com/endyleyms/herbalab"
   }
 }

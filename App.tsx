@@ -149,7 +149,7 @@ export default function App() {
           name="Detail" 
           component={Detail}
           options={{
-            title: 'Register',
+            title: 'Detail',
             headerStyle: {
               backgroundColor: '#BCD4BF',
             },
