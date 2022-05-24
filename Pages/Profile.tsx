@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react'
 import * as ImagePicker from 'expo-image-picker'
 import { getAuth, updateProfile, updateEmail, updatePassword } from "firebase/auth";
 import { ref, uploadBytes  } from "firebase/storage";
-import firebaseModule from '../database/firebase'
+import firebaseModule from '../database/firebase';
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const Profile = () => {
   const [email, setEmail] = React.useState('');
@@ -82,7 +83,10 @@ const Profile = () => {
     <View style={styles.container1}>
       <ScrollView horizontal={false}>
         <View style={styles.container2}>
-          <Image source={{ uri: photoURL }} style={{ width: 150, height: 150, borderRadius: 100, left:30, }} />
+        {!image && (
+          <MaterialCommunityIcons name="camera"  size={100} style={{ color:'gray' }} />
+        )}
+        {image && <Image source={{ uri: photoURL }} style={{ width: 150, height: 150, borderRadius: 100, left:30, }} />}          
           <Pressable style={styles.buton}>
             <Text style={styles.text} onPress={uploadFile} >Upload</Text>
           </Pressable>

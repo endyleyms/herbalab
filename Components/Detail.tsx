@@ -25,7 +25,7 @@ const Detail = ({route}) => {
     <View style={styles.container}>
         <Text style={styles.familia}>Familia: {group.familia}</Text>
         <Image 
-        style={{ width: '20%', height: '20%', alignSelf: 'center' }}
+        style={{ width: '50%', height: '50%', alignSelf: 'center' }}
         source={{uri: image}} />
         <Text style={styles.text}>Género: {group.genero}</Text>
         <Text style={styles.text}>Especie: {group.especie}</Text>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     familia:{
         backgroundColor: '#D2D9D2',
         width: '100%',
-        height: '10%',
+        height: '8%',
         padding: 10,
     },
     text:{

@@ -25,8 +25,7 @@ const Information = ({route}) => {
 
   return (
     <View style={styles.container}>
-      <Text>Grupo: {familia}</Text>
-      <Text>Mapa</Text>
+      <Text>{familia}</Text>
       <Search/>
       <ScrollView horizontal={false} style={{width: '100%', height: '100%'}}>
         <DataTable style={styles.table}>
