@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Pressable, Image, TextInput, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, Pressable, Image, TextInput, ScrollView, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import * as ImagePicker from 'expo-image-picker'
 import { getAuth, updateProfile, updateEmail, updatePassword } from "firebase/auth";
@@ -50,6 +50,7 @@ const Profile = () => {
         updateProfile(auth.currentUser,{
           photoURL: image,
         })
+        Alert.alert("Your photo has been update");
     }
 
     const updateProfileUser = ()=>{
@@ -83,10 +84,10 @@ const Profile = () => {
     <View style={styles.container1}>
       <ScrollView horizontal={false}>
         <View style={styles.container2}>
-        {!image && (
+        {!photoURL && (
           <MaterialCommunityIcons name="camera"  size={100} style={{ color:'gray' }} />
         )}
-        {image && <Image source={{ uri: photoURL }} style={{ width: 150, height: 150, borderRadius: 100, left:30, }} />}          
+        {photoURL && <Image source={{ uri: photoURL }} style={{ width: 150, height: 150, borderRadius: 100, left:30, }} />}          
           <Pressable style={styles.buton}>
             <Text style={styles.text} onPress={uploadFile} >Upload</Text>
           </Pressable>
@@ -161,7 +162,7 @@ const styles = StyleSheet.create({
   buton:{
     backgroundColor: '#F2DCAE',
     width: '20%',
-    height: '8%',
+    height: '10%',
     padding: 5,
     marginVertical: 5,
     left:50,
