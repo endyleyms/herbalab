@@ -3,6 +3,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as ImagePicker from 'expo-image-picker'
 import { collection, addDoc } from "firebase/firestore";
 import firebaseModule from '../database/firebase'
+import { GeoPoint} from "firebase/firestore";
 import React, { useState } from 'react'
 
 const Register = () => {
@@ -10,7 +11,8 @@ const Register = () => {
   const [family, setfamily] = React.useState('');
   const [genero, setGenero] = React.useState('');
   const [especie, setEspecie] = React.useState('');
-  const [ubication, setUbication] = React.useState('');
+  const [latitude, setlatitude] = React.useState('');
+  const [longitude, setLongitude] = React.useState('');
   const [description, setDescription] = React.useState('');
 
   const [image, setImage] = useState(null);
@@ -38,13 +40,13 @@ const Register = () => {
 
 
   const handleCreateRegister  = async () =>{
-    const docRef = await addDoc(collection(firebaseModule.db,`/familia/WW6rF9dCAN7riaC6frYU/grupos/`), {
+    const docRef = await addDoc(collection(firebaseModule.db,`/familia/10P2zdUuPTQDBviAp35J/grupos/`), {
       familia: family,
       genero: genero,
       especie: especie,
       description: description,
       image: image,
-      ubication:ubication,
+      ubication : new GeoPoint(latitude, longitude),
     });
     console.log("Document written with ID: ", docRef.id);
     Alert.alert("Your register has been succsesful");
@@ -95,9 +97,14 @@ const Register = () => {
           <View style={styles.container}>
             <TextInput
               style={styles.input}
-              value={ubication}
-              onChangeText={(text) =>setUbication(text)}
-              placeholder="Coordenadas" />
+              value={latitude}
+              onChangeText={(number) =>setlatitude(number)}
+              placeholder="Latitud" />
+            <TextInput
+            style={styles.input}
+            value={longitude}
+            onChangeText={(number) =>setLongitude(number)}
+            placeholder="Longitud" />
           </View>
         </View>
         <View>
