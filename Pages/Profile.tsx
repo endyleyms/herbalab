@@ -9,7 +9,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 const Profile = () => {
   const [email, setEmail] = React.useState('');
   const [name, setName] = React.useState('');
-  const [password, setPassword] = React.useState('');
     const auth = getAuth();
     const user = auth.currentUser;
     if (user !== null) {
@@ -69,12 +68,6 @@ const Profile = () => {
         email: email,
       })
     }
-    const UpdatePassword = ()=>{
-      const auth = getAuth(firebaseModule.app);
-      updatePassword(auth.currentUser, {
-        password: password,
-      })
-    }
     
     useEffect(()=>{
       setImage(image)
@@ -82,7 +75,7 @@ const Profile = () => {
 
   return (
     <View style={styles.container1}>
-      <ScrollView horizontal={false}>
+      <ScrollView horizontal={false} style={{height: '100%'}}>
         <View style={styles.container2}>
         {!photoURL && (
           <MaterialCommunityIcons name="camera"  size={100} style={{ color:'gray' }} />
@@ -119,17 +112,6 @@ const Profile = () => {
           <Pressable style={styles.butonP}>
             <Text style={styles.text} onPress={UpdateEmail} >Update Email</Text>
           </Pressable>
-          <Text>Password</Text>
-          <View style={styles.container}>
-            <TextInput
-              style={styles.input}
-              value={password}
-              onChangeText={(text) =>setPassword(text)}
-              placeholder="Your Password" />
-          </View>
-        <Pressable style={styles.butonP}>
-          <Text style={styles.text} onPress={UpdatePassword} >Update Password</Text>
-        </Pressable>
       </ScrollView>
       
     </View>
@@ -144,11 +126,12 @@ const styles = StyleSheet.create({
     top: 20,
     alignItems: 'stretch',
     left: 35,
-    padding: 3
+    padding: 3,
+    height:'100%'
   },
   container2:{
     width: '100%',
-    left: 60
+    left: 60,
   },
   container:{
     backgroundColor: 'white',

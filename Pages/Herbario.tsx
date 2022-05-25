@@ -5,8 +5,10 @@ import { collection, addDoc} from "firebase/firestore";
 import firebaseModule from '../database/firebase'
 import { GeoPoint} from "firebase/firestore";
 import React, { useState } from 'react'
+import { useNavigation } from '@react-navigation/native';
 
 const Herbario = ({route}) => {
+  const navigation = useNavigation();
   const {item} = route.params;
 
   const [family, setfamily] = React.useState('');
@@ -51,6 +53,7 @@ const Herbario = ({route}) => {
     });
     console.log("Document written with ID: ", docRef.id);
     Alert.alert("Your register has been succsesful");
+    navigation.navigate('Explore')
   }
 
   return (
