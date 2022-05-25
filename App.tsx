@@ -9,7 +9,6 @@ import Explore from './Pages/Explore';
 import Herbario from './Pages/Herbario';
 import Profile from './Pages/Profile';
 import Information from './Components/Information';
-import Register from './Components/Register';
 import Detail from './Components/Detail';
 
 const Tab = createBottomTabNavigator();
@@ -43,19 +42,6 @@ function Home() {
       component={Explore}
       options={{
         title: 'Explore',
-        headerStyle: {
-          backgroundColor: '#BCD4BF',
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
-      }} />
-      <Tab.Screen 
-      name="Herbario" 
-      component={Herbario}
-      options={{
-        title: 'Herbario',
         headerStyle: {
           backgroundColor: '#BCD4BF',
         },
@@ -133,19 +119,6 @@ export default function App() {
             },
           }} /> 
           <Stack.Screen 
-          name="Register" 
-          component={Register}
-          options={{
-            title: 'Register',
-            headerStyle: {
-              backgroundColor: '#BCD4BF',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          }} /> 
-          <Stack.Screen 
           name="Detail" 
           component={Detail}
           options={{
@@ -157,7 +130,20 @@ export default function App() {
             headerTitleStyle: {
               fontWeight: 'bold',
             },
-          }} />    
+          }} /> 
+          <Stack.Screen 
+          name="Herbario" 
+          component={Herbario}
+          options={{
+            title: 'Register',
+            headerStyle: {
+              backgroundColor: '#BCD4BF',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }} />   
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

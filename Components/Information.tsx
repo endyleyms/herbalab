@@ -5,6 +5,7 @@ import { collection, getDocs} from 'firebase/firestore';
 import firebaseModule from '../database/firebase'
 import Search from './Search';
 import { useNavigation } from '@react-navigation/native';
+import { FAB } from 'react-native-paper';
 
 const Information = ({route}) => {
   const navigation = useNavigation();
@@ -44,7 +45,16 @@ const Information = ({route}) => {
           </DataTable.Row>
           )}
         </DataTable>
+        
       </ScrollView>
+      <FAB
+        style={styles.fab}
+        small
+        icon="plus"
+        onPress={() => navigation.navigate('Herbario',{
+          item
+        })}
+      />
       
     </View>
   )
@@ -66,4 +76,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     width: '100%',
   },
+  fab: {
+    position: 'absolute',
+    margin: 16,
+    right: 0,
+    bottom: 50,
+  }
 })
