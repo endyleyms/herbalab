@@ -3,8 +3,8 @@ import { DataTable } from 'react-native-paper';
 import React, { useEffect, useState } from 'react'
 import { collection, getDocs} from 'firebase/firestore';
 import firebaseModule from '../database/firebase'
-import Search from './Search';
 import { useNavigation } from '@react-navigation/native';
+import { FAB } from 'react-native-paper';
 
 const Information = ({route}) => {
   const navigation = useNavigation();
@@ -25,8 +25,7 @@ const Information = ({route}) => {
 
   return (
     <View style={styles.container}>
-      <Text>{familia}</Text>
-      <Search/>
+      <Text style={styles.textFamilia}>{familia}</Text>
       <ScrollView horizontal={false} style={{width: '100%', height: '100%'}}>
         <DataTable style={styles.table}>
           <DataTable.Header>
@@ -44,7 +43,16 @@ const Information = ({route}) => {
           </DataTable.Row>
           )}
         </DataTable>
+        
       </ScrollView>
+      <FAB
+        style={styles.fab}
+        small
+        icon="plus"
+        onPress={() => navigation.navigate('Herbario',{
+          item
+        })}
+      />
       
     </View>
   )
@@ -57,13 +65,26 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     position: 'relative',
-    left: 30,
-    top: 40,
+    left: 20,
+    top: 20,
     height: '100%',
-    width: '90%',
+    width: '88%',
   },
   table:{
     backgroundColor: 'white',
     width: '100%',
   },
+  fab: {
+    position: 'absolute',
+    margin: 20,
+    right: 0,
+    bottom: 80,
+    backgroundColor: '#95B37D'
+  },
+  textFamilia:{
+    color: '#1E5959',
+    fontSize: 20,
+    alignSelf: 'center',
+    padding: 20
+  }
 })

@@ -1,18 +1,21 @@
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View, Text, Image, StyleSheet, Pressable } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 
 const Collection = ({familia, image, item}) => {
   const navigation = useNavigation();
    
   return (
-    <View style={styles.cardPlants}>
-      <Text style={styles.familia} onPress={() => navigation.navigate('Information', {
+    <View style={styles.cardPlants} >
+      <Pressable onPress={() => navigation.navigate('Information', {
         familia,
         item
-      })}>{familia}</Text>
+      })}>
+       <Text style={styles.familia}>{familia}</Text>
       <Image 
-      style={{ width: '80%', height: '80%', alignSelf: 'center', padding: 40 }}
-      source={{uri: image}} />
+      style={{ width: '50%', height: '50%', alignSelf: 'center', padding: 40 }}
+      source={{uri: image}} /> 
+      </Pressable>
+      
     </View>
   )
 }
@@ -21,8 +24,9 @@ const styles= StyleSheet.create({
     display: 'flex',
     alignContent: 'center',
     backgroundColor: 'white',
-    width: '80%',
-    height: '15%',
+    width: '70%',
+    height: '8%',
+    left: 20,
     marginVertical: 5,
     borderRadius: 5,
     paddingBottom: 5
@@ -30,7 +34,7 @@ const styles= StyleSheet.create({
   familia:{
     backgroundColor: '#BCD4BF',
     width: '100%',
-    height: '20%',
+    height: '35%',
     padding: 10,
   },
   text:{
