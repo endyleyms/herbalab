@@ -9,6 +9,12 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 const Profile = () => {
   const [email, setEmail] = React.useState('');
   const [name, setName] = React.useState('');
+  const [toogle, seToggle] = React.useState(false);
+
+  const toogleToggle = () => {
+    seToggle((state) => !state)
+  }
+  const [password, setPassword] = React.useState('');
     const auth = getAuth();
     const user = auth.currentUser;
     if (user !== null) {
@@ -49,7 +55,9 @@ const Profile = () => {
         updateProfile(auth.currentUser,{
           photoURL: image,
         })
+        toogleToggle();
         Alert.alert("Your photo has been update");
+        
     }
 
     const updateProfileUser = ()=>{
@@ -57,25 +65,15 @@ const Profile = () => {
       updateProfile(auth.currentUser,{
         displayName: name,
       })
-      updateEmail(auth.currentUser, {
-        email: email,
-      })
-    }
-
-    const UpdateEmail = ()=>{
-      const auth = getAuth(firebaseModule.app);
-      updateEmail(auth.currentUser, {
-        email: email,
-      })
+      toogleToggle();
+      Alert.alert("Your name has been update");
     }
     
     useEffect(()=>{
-      setImage(image)
-    },[image])
+    },[toogle])
 
   return (
     <View style={styles.container1}>
-      <ScrollView horizontal={false} style={{height: '100%'}}>
         <View style={styles.container2}>
         {!photoURL && (
           <MaterialCommunityIcons name="camera"  size={100} style={{ color:'gray' }} />
@@ -101,18 +99,6 @@ const Profile = () => {
           <Pressable style={styles.butonP}>
             <Text style={styles.text} onPress={updateProfileUser} >Update Name</Text>
           </Pressable>
-          <Text>Email</Text>
-          <View style={styles.container}>
-            <TextInput
-              style={styles.input}
-              value={email}
-              onChangeText={(text) =>setEmail(text)}
-              placeholder="Your Email" />
-          </View>
-          <Pressable style={styles.butonP}>
-            <Text style={styles.text} onPress={UpdateEmail} >Update Email</Text>
-          </Pressable>
-      </ScrollView>
       
     </View>
   )
@@ -127,11 +113,10 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     left: 35,
     padding: 3,
-    height:'100%'
   },
   container2:{
     width: '100%',
-    left: 60,
+    left: 60
   },
   container:{
     backgroundColor: 'white',
@@ -144,8 +129,8 @@ const styles = StyleSheet.create({
   },
   buton:{
     backgroundColor: '#F2DCAE',
-    width: '20%',
-    height: '10%',
+    width: '30%',
+    height: '9%',
     padding: 5,
     marginVertical: 5,
     left:50,
@@ -154,14 +139,15 @@ const styles = StyleSheet.create({
   text:{
     fontWeight: 'bold',
     color: 'white',
+    alignSelf: 'center'
   },
   input:{
-    height: 50
+    height: 40
   },
   butonP:{
     backgroundColor: '#F2DCAE',
     width: '50%',
-    height: '5%',
+    height: '8%',
     marginVertical: 5,
     alignItems: 'center',
     borderRadius: 5,

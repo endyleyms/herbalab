@@ -1,4 +1,4 @@
-import { Pressable, Image, StyleSheet, Text, TextInput, View, ScrollView, Alert } from 'react-native'
+import { Pressable, Image, StyleSheet, Text, TextInput, View, Alert, ScrollView } from 'react-native'
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as ImagePicker from 'expo-image-picker'
 import { collection, addDoc} from "firebase/firestore";
@@ -6,6 +6,7 @@ import firebaseModule from '../database/firebase'
 import { GeoPoint} from "firebase/firestore";
 import React, { useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
+
 
 const Herbario = ({route}) => {
   const navigation = useNavigation();
@@ -58,7 +59,7 @@ const Herbario = ({route}) => {
 
   return (
     <View style={styles.container1}>
-      <ScrollView horizontal={false}>
+      <ScrollView >
         {!image && (
           <MaterialCommunityIcons name="camera"  size={100} style={{ color:'gray' }} />
         )}
@@ -168,7 +169,7 @@ const styles = StyleSheet.create({
   butonI:{
     backgroundColor: '#F2DCAE',
     width: '50%',
-    height: '7%',
+    height: '6%',
     padding: 10,
     marginVertical: 5,
     alignItems: 'center',

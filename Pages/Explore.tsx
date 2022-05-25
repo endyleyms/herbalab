@@ -33,7 +33,9 @@ const Explore = () => {
 const styles= StyleSheet.create({
   container:{
     display: 'flex',
-    flexDirection: 'column',
+    flex: 1,
+    flexDirection:'row',
+    gap: '1rem',
     position: 'relative',
     left: 30,
     top: 40,
