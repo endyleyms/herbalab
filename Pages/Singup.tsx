@@ -1,8 +1,8 @@
 import React from "react";
-import { Pressable, SafeAreaView, TextInput, StyleSheet, View, Text } from "react-native";
+import { Pressable, SafeAreaView, TextInput, StyleSheet, View, Text, Image } from "react-native";
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
 import firebaseModule from '../database/firebase'
-import Hello from '../Components/MyComponent';
+import Logo from '../assets/HerbalApp.png'
 
 export default function Singup({navigation}) {
   const [email, setEmail] = React.useState('');
@@ -23,7 +23,9 @@ export default function Singup({navigation}) {
   
   return (
     <><View style={styles.containerHello}>
-      <Hello />
+      <Image 
+				source={Logo}
+				style={{ width: '60%', height: '40%'}} />
     </View>
     <SafeAreaView style={styles.container1}>
           <View>
@@ -68,7 +70,7 @@ export default function Singup({navigation}) {
 const styles= StyleSheet.create({
   container1:{
     position: 'relative',
-    top: 200,
+    top: 50,
     alignItems: 'stretch',
     width: '80%',
     left: 35
@@ -77,8 +79,6 @@ const styles= StyleSheet.create({
     position: 'relative',
     top: 80,
     alignItems: 'center',
-    width: '80%',
-    left: 35
   },
   container:{
     backgroundColor: 'white',
@@ -95,7 +95,7 @@ const styles= StyleSheet.create({
   buton:{
     backgroundColor: '#F2DCAE',
     width: '100%',
-    height: '15%',
+    height: '13%',
     padding: 10,
     marginVertical: 5,
     alignItems: 'center',

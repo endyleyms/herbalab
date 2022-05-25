@@ -1,8 +1,8 @@
 import { getAuth, signInWithEmailAndPassword, } from "firebase/auth"
 import firebaseModule from '../database/firebase'
 import React from "react";
-import { SafeAreaView, TextInput, StyleSheet, View, Text, Pressable } from "react-native";
-import Hello from '../Components/MyComponent';
+import { SafeAreaView, TextInput, StyleSheet, View, Text, Pressable, Image} from "react-native";
+import Logo from '../assets/HerbalApp.png'
 
 
 export default function Login({navigation}) {
@@ -32,7 +32,9 @@ export default function Login({navigation}) {
   
   return (
     <><View style={styles.containerHello}>
-      <Hello />
+      <Image 
+				source={Logo}
+				style={{ width: '60%', height: '40%'}} />
     </View>
     <SafeAreaView style={styles.container1}>
           <View>
@@ -59,12 +61,6 @@ export default function Login({navigation}) {
           <Pressable style={styles.buton}>
             <Text style={styles.text} onPress={handleSigIn} >Login</Text>
           </Pressable>
-        <Pressable style={styles.butonF}>
-            <Text style={styles.textf} onPress={() => navigation.navigate('Home')}>Sing In with Facebook</Text>
-        </Pressable>
-        <Pressable style={styles.butonG}>
-            <Text style={styles.textG}>Sing In with Google</Text>
-        </Pressable>
         <Text onPress={() => navigation.navigate('Singup')}>Dont have an account? Sing up </Text>
     </SafeAreaView>
     </>
@@ -73,7 +69,6 @@ export default function Login({navigation}) {
 const styles= StyleSheet.create({
   container1:{
     position: 'relative',
-    top: 200,
     alignItems: 'stretch',
     width: '80%',
     left: 35
@@ -82,8 +77,6 @@ const styles= StyleSheet.create({
     position: 'relative',
     top: 80,
     alignItems: 'center',
-    width: '80%',
-    left: 35
   },
   container:{
     backgroundColor: 'white',
@@ -100,7 +93,7 @@ const styles= StyleSheet.create({
   buton:{
     backgroundColor: '#F2DCAE',
     width: '100%',
-    height: '10%',
+    height: '15%',
     padding: 10,
     marginVertical: 5,
     alignItems: 'center',
