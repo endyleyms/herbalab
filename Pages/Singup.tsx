@@ -25,7 +25,7 @@ export default function Singup({navigation}) {
     <><View style={styles.containerHello}>
       <Image 
 				source={Logo}
-				style={{ width: '60%', height: '40%'}} />
+				style={{ width: '60%', height: '45%'}} />
     </View>
     <SafeAreaView style={styles.container1}>
           <View>
